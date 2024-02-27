@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:03:53 by kgriset           #+#    #+#             */
-/*   Updated: 2024/02/27 12:06:20 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/02/27 12:40:37 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,10 @@ typedef struct s_data {
     int line_length;
     int endian;
 } t_data;
+
+typedef struct s_vars {
+    void *mlx;
+    void *win;
+} t_vars;
 
 # endif
