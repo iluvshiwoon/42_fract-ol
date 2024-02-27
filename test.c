@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/02/27 12:43:51 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/02/27 12:49:19 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ int create_trgb(int t, int r, int g, int b)
 
 int close_win (int keycode, t_vars *vars)
 {
-    if (keycode == 27)
-        mlx_destroy_window(vars->mlx, vars->win);
+    mlx_destroy_window(vars->mlx, vars->win);
     return (1);
 }
 
