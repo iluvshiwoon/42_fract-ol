@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/02/28 18:50:45 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/02/28 18:52:32 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ int main(void)
 	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "test!");
     img.img = mlx_new_image(vars.mlx, 1920, 1080);
     img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-    i = 500;
+    i = 0;
     while (i < 1000)
     {
-        j = 500;
+        j = 0;
         while (j < 1000)
         {
-            if (pow((double)i,2) + pow((double)j,2) < 50)
+            if (pow((double)i - 200,2) + pow((double)j - 200,2) < 500)
                 my_mlx_put_pixel(&img, i, j, create_trgb(40,255,0,0));
             j++;
         }
