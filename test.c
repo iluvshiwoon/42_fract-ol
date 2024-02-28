@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/02/28 19:34:56 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/02/28 19:38:03 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int render_next_frame(t_pos * pos)
     }
     mlx_put_image_to_window(pos->mlx, pos->win, img.img, 400, 400);
     mlx_hook(pos->win, 2, 1L<<0, &close_win, pos);
+    mlx_loop(pos->mlx);
     return 1;
 }
 
