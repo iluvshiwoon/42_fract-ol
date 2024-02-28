@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/02/28 19:51:07 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/02/28 19:52:52 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,17 @@ int create_trgb(int t, int r, int g, int b)
 }
 
 #include <stdio.h>
-int close_win (int keycode, t_vars *vars)
+int close_win (int keycode, t_pos *pos)
 {
     if (keycode == XK_Escape)
     {
-        mlx_destroy_window(vars->mlx, vars->win);
+        mlx_destroy_window(pos->mlx, pos->win);
         exit(0);
     }
-    printf("%d\n", XK_w);
+    else if (keycode == XK_w)
+    {
+        pos->a += 1;
+    }
     return (0);
 }
 int change_pos (int keycode, t_pos * pos)
