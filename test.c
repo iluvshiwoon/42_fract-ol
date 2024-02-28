@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/02/28 19:55:14 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/02/28 19:57:09 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ int close_win (int keycode, t_pos *pos)
     }
     else if (keycode == XK_w)
     {
-        pos->a += 1;
+        pos->a -= 1;
     }
     else if (keycode == XK_s)
     {
-        pos->a -= 1;
+        pos->a += 1;
     }
     else if (keycode == XK_d)
     {
@@ -66,18 +66,18 @@ int render_next_frame(t_pos * pos)
     img.img = mlx_new_image(pos->mlx, 1920, 1080);
     img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
     i = 0;
-    while (i < 1000)
+    while (i < 1500)
     {
         j = 0;
-        while (j < 1000)
+        while (j < 1500)
         {
-            if (pow((double)i - pos->b,2) + pow((double)j - pos->a,2) < 500)
+            if (pow((double)i - pos->b,2) + pow((double)j - pos->a,2) < 1000)
                 my_mlx_put_pixel(&img, i, j, create_trgb(40,255,0+i%255,0));
             j++;
         }
         i++;
     }
-    mlx_put_image_to_window(pos->mlx, pos->win, img.img, 400, 400);
+    mlx_put_image_to_window(pos->mlx, pos->win, img.img, 0, 0);
     mlx_hook(pos->win, 2, 1L<<0, &close_win, pos);
     mlx_loop(pos->mlx);
     return 1;
