@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/02/28 19:02:56 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/02/28 19:14:20 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ int create_trgb(int t, int r, int g, int b)
 int close_win (int keycode, t_vars *vars)
 {
     if (keycode == XK_Escape)
+    {
         mlx_destroy_window(vars->mlx, vars->win);
+        exit(0);
+    }
     return (0);
 }
 
@@ -43,16 +46,17 @@ int main(void)
 	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "test!");
     img.img = mlx_new_image(vars.mlx, 1920, 1080);
     img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-    j = 0;
-    while (j < 500)
+    i = 0;
+    while (i < 1000)
     {
-        i = j + 100;
-        while (i < 1000 - j)
+        j = 0;
+        while (j < 1000)
         {
-            my_mlx_put_pixel(&img, i, j, create_trgb(100,55,55,0+j%255 + 1));
-            i++;
+            if (pow((double)i - 200,2) + pow((double)j - 200,2) < 500)
+                my_mlx_put_pixel(&img, i, j, create_trgb(40,255,0+i%255,0));
+            j++;
         }
-        j++;
+        i++;
     }
     mlx_put_image_to_window(vars.mlx, vars.win, img.img, 400, 400);
     mlx_hook(vars.win, 2, 1L<<0, &close_win, &vars);
