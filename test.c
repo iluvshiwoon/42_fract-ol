@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/02/28 19:58:38 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/02/28 19:59:40 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,19 @@ int close_win (int keycode, t_pos *pos)
     }
     else if (keycode == XK_w)
     {
-        pos->a -= 1;
+        pos->a -= 3;
     }
     else if (keycode == XK_s)
     {
-        pos->a += 1;
+        pos->a += 3;
     }
     else if (keycode == XK_d)
     {
-        pos->b += 1;
+        pos->b += 3;
     }
     else if (keycode == XK_a)
     {
-        pos->b -= 1;
+        pos->b -= 3;
     }
     return (0);
 }
@@ -71,7 +71,7 @@ int render_next_frame(t_pos * pos)
         j = 0;
         while (j < 1500)
         {
-            if (pow((double)i - pos->b,2) + pow((double)j - pos->a,2) < 10000)
+            if (pow((double)i - pos->b,2) + pow((double)j - pos->a,2) < 20000)
                 my_mlx_put_pixel(&img, i, j, create_trgb(40,255,0+i%255,0));
             j++;
         }
