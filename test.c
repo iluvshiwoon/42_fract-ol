@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/02/28 19:50:08 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/02/28 19:51:07 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int close_win (int keycode, t_vars *vars)
         mlx_destroy_window(vars->mlx, vars->win);
         exit(0);
     }
-    printf("%d\n", keycode);
+    printf("%d\n", XK_w);
     return (0);
 }
 int change_pos (int keycode, t_pos * pos)
