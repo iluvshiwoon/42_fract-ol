@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/02/28 19:38:03 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/02/28 19:39:29 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int render_next_frame(t_pos * pos)
     int j;
     t_data img;
 
-    mlx_hook(pos->win, 2, 1L<<0, &change_pos, pos);
     img.img = mlx_new_image(pos->mlx, 1920, 1080);
     img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
     i = 0;
@@ -70,6 +69,7 @@ int render_next_frame(t_pos * pos)
         i++;
     }
     mlx_put_image_to_window(pos->mlx, pos->win, img.img, 400, 400);
+    mlx_hook(pos->win, 2, 1L<<0, &change_pos, pos);
     mlx_hook(pos->win, 2, 1L<<0, &close_win, pos);
     mlx_loop(pos->mlx);
     return 1;
@@ -93,19 +93,6 @@ int main(void)
     pos->win = vars.win;
     img.img = mlx_new_image(vars.mlx, 1920, 1080);
     img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-    i = 0;
-    while (i < 1000)
-    {
-        j = 0;
-        while (j < 1000)
-        {
-            if (pow((double)i - 200,2) + pow((double)j - 200,2) < 500)
-                my_mlx_put_pixel(&img, i, j, create_trgb(40,255,0+i%255,0));
-            j++;
-        }
-        i++;
-    }
-    mlx_put_image_to_window(vars.mlx, vars.win, img.img, 400, 400);
     mlx_loop_hook(vars.mlx, &render_next_frame, pos);
 	mlx_loop(vars.mlx);
 }
