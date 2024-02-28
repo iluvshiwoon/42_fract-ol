@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/02/28 18:37:06 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/02/28 18:47:16 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int main(void)
         j = 0;
         while (j < 500)
         {
-            my_mlx_put_pixel(&img, i, j, create_trgb(40,255,0,0));
+            if (pow((double)i,2) + pow((double)j,2) < 50)
+                my_mlx_put_pixel(&img, i, j, create_trgb(40,255,0,0));
             j++;
         }
         i++;
