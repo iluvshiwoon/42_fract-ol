@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/02/28 18:47:16 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/02/28 18:49:18 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int close_win (int keycode, t_vars *vars)
 {
     if (keycode == XK_Escape)
         mlx_destroy_window(vars->mlx, vars->win);
-    return (1);
+    return (0);
 }
 
 int main(void)
@@ -49,13 +49,14 @@ int main(void)
         j = 0;
         while (j < 500)
         {
-            if (pow((double)i,2) + pow((double)j,2) < 50)
+            if (pow((double)i,2) + pow((double)j,2) < 300)
                 my_mlx_put_pixel(&img, i, j, create_trgb(40,255,0,0));
             j++;
         }
         i++;
     }
     mlx_put_image_to_window(vars.mlx, vars.win, img.img, 400, 400);
-    mlx_hook(vars.win, 2, 1L<<0, &close_win, &vars);
+    if (mlx_hook(vars.win, 2, 1L<<0, &close_win, &vars) == 0)
+        return 1;
 	mlx_loop(vars.mlx);
 }
