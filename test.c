@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/02/28 19:41:08 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/02/28 19:48:31 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ int close_win (int keycode, t_vars *vars)
     }
     return (0);
 }
-
+#include <stdio.h>
 int change_pos (int keycode, t_pos * pos)
 {
     if (keycode == XK_w)
         pos->a += 1;
-    ft_printf("%d\n", keycode);
+    printf("%d\n", keycode);
     return 1;
 }
 
