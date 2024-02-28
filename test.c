@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/02/28 19:52:52 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/02/28 19:55:14 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,20 @@ int close_win (int keycode, t_pos *pos)
     {
         pos->a += 1;
     }
+    else if (keycode == XK_s)
+    {
+        pos->a -= 1;
+    }
+    else if (keycode == XK_d)
+    {
+        pos->b += 1;
+    }
+    else if (keycode == XK_a)
+    {
+        pos->b -= 1;
+    }
     return (0);
 }
-int change_pos (int keycode, t_pos * pos)
-{
-    if (keycode == XK_w)
-        pos->a += 1;
-    return 1;
-}
-
 int render_next_frame(t_pos * pos)
 {
     int i;
@@ -66,14 +71,13 @@ int render_next_frame(t_pos * pos)
         j = 0;
         while (j < 1000)
         {
-            if (pow((double)i - pos->a,2) + pow((double)j - pos->b,2) < 500)
+            if (pow((double)i - pos->b,2) + pow((double)j - pos->a,2) < 500)
                 my_mlx_put_pixel(&img, i, j, create_trgb(40,255,0+i%255,0));
             j++;
         }
         i++;
     }
     mlx_put_image_to_window(pos->mlx, pos->win, img.img, 400, 400);
-    mlx_hook(pos->win, 2, 1L<<0, &change_pos, pos);
     mlx_hook(pos->win, 2, 1L<<0, &close_win, pos);
     mlx_loop(pos->mlx);
     return 1;
