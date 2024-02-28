@@ -6,11 +6,14 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:03:53 by kgriset           #+#    #+#             */
-/*   Updated: 2024/02/27 12:40:37 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/02/28 18:35:38 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
+#include "minilibx-linux/mlx.h"
+#define XK_MISCELLANY
+#include <X11/keysymdef.h>
 # define FRACTOL_H
 # include "42_MyLibC/mylibc.h"
 

@@ -6,13 +6,10 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/02/28 18:31:18 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/02/28 18:37:06 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minilibx-linux/mlx.h"
-#define XK_MISCELLANY
-#include <X11/keysymdef.h>
 #include "fractol.h"
 
 void my_mlx_put_pixel(t_data *data, int x, int y, int color)
@@ -43,21 +40,21 @@ int main(void)
 
 	vars.mlx = mlx_init();
 
-	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello world!");
+	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "test!");
     img.img = mlx_new_image(vars.mlx, 1920, 1080);
     img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
     i = 0;
-    while (i < 1920)
+    while (i < 500)
     {
         j = 0;
-        while (j < 1080)
+        while (j < 500)
         {
             my_mlx_put_pixel(&img, i, j, create_trgb(40,255,0,0));
             j++;
         }
         i++;
     }
-    mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
+    mlx_put_image_to_window(vars.mlx, vars.win, img.img, 400, 400);
     mlx_hook(vars.win, 2, 1L<<0, &close_win, &vars);
 	mlx_loop(vars.mlx);
 }
