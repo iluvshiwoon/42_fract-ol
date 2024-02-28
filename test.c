@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/02/28 19:57:09 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/02/28 19:58:38 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int render_next_frame(t_pos * pos)
         j = 0;
         while (j < 1500)
         {
-            if (pow((double)i - pos->b,2) + pow((double)j - pos->a,2) < 1000)
+            if (pow((double)i - pos->b,2) + pow((double)j - pos->a,2) < 10000)
                 my_mlx_put_pixel(&img, i, j, create_trgb(40,255,0+i%255,0));
             j++;
         }
