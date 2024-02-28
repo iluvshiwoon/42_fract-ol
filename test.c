@@ -6,11 +6,13 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/02/27 12:58:54 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/02/28 18:31:18 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minilibx-linux/mlx.h"
+#define XK_MISCELLANY
+#include <X11/keysymdef.h>
 #include "fractol.h"
 
 void my_mlx_put_pixel(t_data *data, int x, int y, int color)
@@ -27,7 +29,7 @@ int create_trgb(int t, int r, int g, int b)
 
 int close_win (int keycode, t_vars *vars)
 {
-    if (keycode == 65307)
+    if (keycode == XK_Escape)
         mlx_destroy_window(vars->mlx, vars->win);
     return (1);
 }
