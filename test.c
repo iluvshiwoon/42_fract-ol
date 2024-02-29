@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/02/29 17:55:33 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/02/29 17:59:49 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,34 +46,34 @@ int calc_mandelbrot(t_vars * vars)
     vars->x = -1920./200;
     img.img = mlx_new_image(vars->mlx, 1920, 1080);
     img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-    while (vars->p_x < 1920)
-    {
-        vars->p_y = 0;
-        vars->y = -1080./200;
-        while (vars->p_y < 1080)
-        {
-            i = 0;
-            zr = 0.0;
-            zi = 0.0;
-            while (i < 50)
-            {
-                zr_temp = zr*zr - zi*zi + vars->x;
-                zi = 2*zr*zi + vars->y;
-                zr = zr_temp;
-                if (zr*zr + zi*zi >= 4)
-                    break;
-                ++i;
-            }
-            if (i == 50)
-                my_mlx_put_pixel(&img, vars->p_x, vars->p_y, create_trgb(0,0,0,0));
-            else
-                my_mlx_put_pixel(&img, vars->p_x, vars->p_y, create_trgb(0,(1*i)%255,(2*i)%255,(3*i)%255));
-            ++(vars->p_y);
-            vars->y += 0.01;
-        }
-        ++(vars->p_x);
-        vars->x += 0.01;
-    }
+    // while (vars->p_x < 1920)
+    // {
+    //     vars->p_y = 0;
+    //     vars->y = -1080./200;
+    //     while (vars->p_y < 1080)
+    //     {
+    //         i = 0;
+    //         zr = 0.0;
+    //         zi = 0.0;
+    //         while (i < 50)
+    //         {
+    //             zr_temp = zr*zr - zi*zi + vars->x;
+    //             zi = 2*zr*zi + vars->y;
+    //             zr = zr_temp;
+    //             if (zr*zr + zi*zi >= 4)
+    //                 break;
+    //             ++i;
+    //         }
+    //         if (i == 50)
+    //             my_mlx_put_pixel(&img, vars->p_x, vars->p_y, create_trgb(0,0,0,0));
+    //         else
+    //             my_mlx_put_pixel(&img, vars->p_x, vars->p_y, create_trgb(0,(1*i)%255,(2*i)%255,(3*i)%255));
+    //         ++(vars->p_y);
+    //         vars->y += 0.01;
+    //     }
+    //     ++(vars->p_x);
+    //     vars->x += 0.01;
+    // }
     mlx_put_image_to_window(vars->mlx, vars->win, &img, 0, 0);
     return 1;
 }
@@ -81,7 +81,6 @@ int calc_mandelbrot(t_vars * vars)
 int main(void)
 {
     t_vars * vars;
-    t_data img;
 
     vars = malloc(sizeof(*vars));
 	vars->mlx = mlx_init();
