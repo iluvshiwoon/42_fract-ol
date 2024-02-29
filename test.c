@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/02/29 17:52:45 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/02/29 17:55:33 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int calc_mandelbrot(t_vars * vars)
         vars->x += 0.01;
     }
     mlx_put_image_to_window(vars->mlx, vars->win, &img, 0, 0);
-    mlx_hook(vars->win, 2, 1L<<0, &close_win, vars);
     return 1;
 }
 
@@ -87,6 +86,7 @@ int main(void)
     vars = malloc(sizeof(*vars));
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, 1920, 1080, "Mandelbrot");
-    mlx_loop_hook(vars->mlx, &calc_mandelbrot, vars);
+    calc_mandelbrot(vars);
+    mlx_hook(vars->win, 2, 1L<<0, &close_win, vars);
     mlx_loop(vars->mlx);
 }
