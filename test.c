@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/02/29 18:20:56 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/02/29 18:21:56 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int calc_mandelbrot(t_vars *vars) {
           i = 0;
           zr = 0.0;
           zi = 0.0;
-          while (i < 50)
+          while (i < 100)
           {
               zr_temp = zr*zr - zi*zi + vars->x;
               zi = 2*zr*zi + vars->y;
