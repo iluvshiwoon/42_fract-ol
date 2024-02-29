@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/02/29 18:19:10 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/02/29 18:20:27 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ int calc_mandelbrot(t_vars *vars) {
   double zr_temp;
 
   vars->p_x = 0;
-  vars->x = -1920. / 40;
+  vars->x = -1920. / 400;
   img.img = mlx_new_image(vars->mlx, 1920/2, 1080/2);
   img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
                                &img.endian);
   while (vars->p_x < 1920/2)
   {
       vars->p_y = 0;
-      vars->y = -1080./40 ;
+      vars->y = -1080./400 ;
       while (vars->p_y < 1080/2)
       {
           i = 0;
@@ -67,10 +67,10 @@ int calc_mandelbrot(t_vars *vars) {
               my_mlx_put_pixel(&img, vars->p_x, vars->p_y,
               create_trgb(0,(1*i)%255,(2*i)%255,(3*i)%255));
           ++(vars->p_y);
-          vars->y += 1. / 20;
+          vars->y += 1. / 400;
       }
       ++(vars->p_x);
-      vars->x += 1. /20;
+      vars->x += 1. /400;
   }
   mlx_put_image_to_window(vars->mlx, vars->win, img.img, 0, 0);
   return 1;
