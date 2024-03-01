@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/01 14:43:25 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/01 14:50:55 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,17 @@ int calc_mandelbrot(t_vars *vars) {
   vars->p_x = 0;
   vars->x = -VW / vars->zoom + vars->offset_x;
 
-  img.img = mlx_new_image(vars->mlx, 1920 / 2, 1080 / 2);
+  img.img = mlx_new_image(vars->mlx, VW, VH);
   img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
                                &img.endian);
-  while (vars->p_x < 1920 / 2) {
+  while (vars->p_x < VW) {
     vars->p_y = 0;
     vars->y = -VH / vars->zoom + vars->offset_y;
-    while (vars->p_y < 1080 / 2) {
+    while (vars->p_y < VH) {
       i = 0;
       zr = 0.0;
       zi = 0.0;
-      while (i < 100) {
+      while (i < PASS) {
         zr_temp = zr * zr - zi * zi + vars->x;
         zi = 2 * zr * zi + vars->y;
         zr = zr_temp;
@@ -58,17 +58,17 @@ int calc_mandelbrot(t_vars *vars) {
           break;
         ++i;
       }
-      if (i == 100)
+      if (i == PASS)
         my_mlx_put_pixel(&img, vars->p_x, vars->p_y, create_trgb(0, 0, 0, 0));
       else
         my_mlx_put_pixel(
             &img, vars->p_x, vars->p_y,
             create_trgb(0, (1 * i) % 255, (2 * i) % 255, (3 * i) % 255));
       ++(vars->p_y);
-      vars->y += 1. / vars->zoom;
+      vars->y += 0.5 / vars->zoom;
     }
     ++(vars->p_x);
-    vars->x += 1. / vars->zoom;
+    vars->x += 0.5/ vars->zoom;
   }
   mlx_put_image_to_window(vars->mlx, vars->win, img.img, 0, 0);
   return 1;
@@ -79,7 +79,7 @@ int main(void) {
 
   vars = malloc(sizeof(*vars));
   vars->mlx = mlx_init();
-  vars->win = mlx_new_window(vars->mlx, 1920 / 2, 1080 / 2, "Mandelbrot");
+  vars->win = mlx_new_window(vars->mlx, VW, VH, "Mandelbrot");
   vars->zoom = 200;
   vars->offset_x = 0;
   vars->offset_y = 0;
