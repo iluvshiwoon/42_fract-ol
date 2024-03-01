@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/02/29 18:25:10 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/01 14:42:04 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,39 +38,37 @@ int calc_mandelbrot(t_vars *vars) {
   double zr_temp;
 
   vars->p_x = 0;
-  vars->x = -1920. / 400;
-  img.img = mlx_new_image(vars->mlx, 1920/2, 1080/2);
+  vars->x = -VW / vars->zoom + vars->offset_x;
+
+  img.img = mlx_new_image(vars->mlx, 1920 / 2, 1080 / 2);
   img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
                                &img.endian);
-  while (vars->p_x < 1920/2)
-  {
-      vars->p_y = 0;
-      vars->y = -1080./400 ;
-      while (vars->p_y < 1080/2)
-      {
-          i = 0;
-          zr = 0.0;
-          zi = 0.0;
-          while (i < 100)
-          {
-              zr_temp = zr*zr - zi*zi + vars->x;
-              zi = 2*zr*zi + vars->y;
-              zr = zr_temp;
-              if (zr*zr + zi*zi >= 4)
-                  break;
-              ++i;
-          }
-          if (i == 100)
-              my_mlx_put_pixel(&img, vars->p_x, vars->p_y,
-              create_trgb(0,0,0,0));
-          else
-              my_mlx_put_pixel(&img, vars->p_x, vars->p_y,
-              create_trgb(0,(1*i)%255,(2*i)%255,(3*i)%255));
-          ++(vars->p_y);
-          vars->y += 1. / 100;
+  while (vars->p_x < 1920 / 2) {
+    vars->p_y = 0;
+    vars->y = -VH / vars->zoom + vars->offset_y;
+    while (vars->p_y < 1080 / 2) {
+      i = 0;
+      zr = 0.0;
+      zi = 0.0;
+      while (i < 100) {
+        zr_temp = zr * zr - zi * zi + vars->x;
+        zi = 2 * zr * zi + vars->y;
+        zr = zr_temp;
+        if (zr * zr + zi * zi >= 4)
+          break;
+        ++i;
       }
-      ++(vars->p_x);
-      vars->x += 1. /100;
+      if (i == 100)
+        my_mlx_put_pixel(&img, vars->p_x, vars->p_y, create_trgb(0, 0, 0, 0));
+      else
+        my_mlx_put_pixel(
+            &img, vars->p_x, vars->p_y,
+            create_trgb(0, (1 * i) % 255, (2 * i) % 255, (3 * i) % 255));
+      ++(vars->p_y);
+      vars->y += 1. / 100;
+    }
+    ++(vars->p_x);
+    vars->x += 1. / 100;
   }
   mlx_put_image_to_window(vars->mlx, vars->win, img.img, 0, 0);
   return 1;
@@ -81,7 +79,10 @@ int main(void) {
 
   vars = malloc(sizeof(*vars));
   vars->mlx = mlx_init();
-  vars->win = mlx_new_window(vars->mlx, 1920/2, 1080/2, "Mandelbrot");
+  vars->win = mlx_new_window(vars->mlx, 1920 / 2, 1080 / 2, "Mandelbrot");
+  vars->zoom = 200;
+  vars->offset_x = 0;
+  vars->offset_y = 0;
   calc_mandelbrot(vars);
   mlx_hook(vars->win, 2, 1L << 0, &close_win, vars);
   mlx_loop(vars->mlx);

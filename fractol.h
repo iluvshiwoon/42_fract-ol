@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:03:53 by kgriset           #+#    #+#             */
-/*   Updated: 2024/02/29 17:17:29 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/01 14:38:22 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # define FRACTOL_H
 # include "42_MyLibC/mylibc.h"
 #include <math.h>
+#define VW 1920. / 2
+#define VH 1080. / 2
 
 typedef struct s_data {
     void *img;
@@ -31,7 +33,10 @@ typedef struct s_vars {
     void *mlx;
     void *win;
     int p_x;
+    int offset_x;
     int p_y;
+    int offset_y;
+    int zoom;
     double x;
     double y;
 } t_vars;
