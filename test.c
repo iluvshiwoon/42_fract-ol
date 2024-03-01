@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/01 18:27:20 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/01 18:37:59 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int key_events(int keycode, t_vars *vars) {
 
 double scale(double x)
 {
-    return(((2 - -2) * (x - 0))/(1920 - 0) + -2);
+    return(((4 - -4) * (x - 0))/(1920 - 0) + -4);
 }
 
 int calc_mandelbrot(t_vars *vars) {
