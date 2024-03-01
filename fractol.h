@@ -6,18 +6,16 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:03:53 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/01 15:44:35 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/01 18:16:42 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
-#include "minilibx-linux/mlx.h"
-#define XK_MISCELLANY
-#define XK_LATIN1
-#include <X11/keysymdef.h>
 # define FRACTOL_H
+# include "minilibx-linux/mlx.h"
 # include "42_MyLibC/mylibc.h"
-#include <math.h>
+# include <math.h>
+# include "keycode.h"
 #define VW 1920. / 2
 #define VH 1080. / 2
 #define PASS 50
