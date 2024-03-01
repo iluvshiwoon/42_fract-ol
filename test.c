@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/01 19:08:36 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/01 19:14:46 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int main(void) {
                              "Mandelbrot");
   vars->min_r = -4.0;
   vars->max_r = 4.0;
-  vars->min_i = -4.0;
+  vars->min_i = -10.0;
   vars->max_i = 4.0;
   vars->zoom = 200;
   vars->offset_x = 0;
