@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/01 18:37:59 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/01 18:40:14 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int calc_mandelbrot(t_vars *vars) {
         zr_temp = zr * zr - zi * zi + vars->x;
         zi = 2 * zr * zi + vars->y;
         zr = zr_temp;
-        if (zr * zr + zi * zi >= 10)
+        if (zr * zr + zi * zi >= 4)
           break;
         ++i;
       }
@@ -109,6 +109,10 @@ int main(void) {
   vars->zoom = 200;
   vars->offset_x = 0;
   vars->offset_y = 0;
+    printf("%lf\n", scale(0.));
+    printf("%lf\n", scale(1.));
+    printf("%lf\n", scale(1920.));
+
   calc_mandelbrot(vars);
   mlx_key_hook(vars->win, &key_events, vars);
   mlx_loop(vars->mlx);
