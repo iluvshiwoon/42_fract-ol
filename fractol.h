@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:03:53 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/01 14:50:12 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/01 15:04:57 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,5 @@ typedef struct s_vars {
     double y;
 } t_vars;
 
+int calc_mandelbrot(t_vars *vars);
 # endif
