@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/01 15:37:21 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/01 15:38:04 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int key_events(int keycode, t_vars *vars) {
   else if (keycode == 97)
     vars->offset_x -= 2. / vars->zoom*10;
   else if (keycode == 119)
-    vars->offset_y += 2. / vars->zoom*10;
-  else if (keycode == 115)
     vars->offset_y -= 2. / vars->zoom*10;
+  else if (keycode == 115)
+    vars->offset_y += 2. / vars->zoom*10;
   else if (keycode == 61)
             vars->zoom += 10;
   else if (keycode == 45)
