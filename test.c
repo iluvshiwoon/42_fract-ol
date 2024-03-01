@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/01 15:22:22 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/01 15:27:14 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ int key_events(int keycode, t_vars *vars) {
   if (keycode == XK_Escape) {
     mlx_destroy_window(vars->mlx, vars->win);
     exit(0);
-  } else if (keycode == XK_D)
-    vars->offset_x += 1.;
-  else if (keycode == XK_A)
-    vars->offset_x -= 1.;
-  else if (keycode == XK_w)
-    vars->offset_y += 1.;
-  else if (keycode == XK_S)
-    vars->offset_y -= 1.;
+  } else if (keycode == 100)
+    vars->offset_x += 0.2;
+  else if (keycode == 97)
+    vars->offset_x -= 0.2; 
+  else if (keycode == 119)
+    vars->offset_y += 0.2;
+  else if (keycode == 115)
+    vars->offset_y -= 0.2;
   else
     return (0);
   calc_mandelbrot(vars);
