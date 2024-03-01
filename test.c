@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/01 18:40:14 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/01 18:42:09 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,11 @@ int calc_mandelbrot(t_vars *vars) {
             create_trgb(0, (10 * i) % 255, (20 * i) % 255, (30 * i) % 255));
       ++(vars->p_y);
       // vars->y += 2. / vars->zoom;
-            vars->y += scale(1.);
+            vars->y += scale(1.) - scale(0.);
     }
     ++(vars->p_x);
     // vars->x += 2. / vars->zoom;
-        vars->x += scale(1.);
+        vars->x += scale(1.) - scale(0.);
   }
   mlx_put_image_to_window(vars->mlx, vars->win, img.img, 0, 0);
   return 1;
