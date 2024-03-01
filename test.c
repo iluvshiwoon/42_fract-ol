@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/01 19:14:46 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/01 19:16:20 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ int main(void) {
 
   printf("%f\n", scale('h', 0., vars));
   printf("%f\n", scale('h', 1., vars));
-  printf("%f\n", scale('h', 1920., vars));
+  printf("%f\n", scale('h', 1080., vars));
 
   calc_mandelbrot(vars);
   mlx_key_hook(vars->win, &key_events, vars);
