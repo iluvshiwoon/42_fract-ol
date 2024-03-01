@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/01 14:53:10 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/01 15:11:11 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,21 @@ int close_win(int keycode, t_vars *vars) {
     exit(0);
   }
   return (0);
+}
+
+int movement(int keycode, t_vars *vars) {
+  if (keycode == XK_d)
+    vars->offset_x += 2. / vars->zoom;
+  else if (keycode == XK_a)
+    vars->offset_x -= 2. / vars->zoom;
+  else if (keycode == XK_w)
+    vars->offset_y += 2. / vars->zoom;
+  else if (keycode == XK_s)
+    vars->offset_y -= 2. / vars->zoom;
+  else
+    return (0);
+  calc_mandelbrot(vars);
+  return 1;
 }
 
 int calc_mandelbrot(t_vars *vars) {
@@ -85,5 +100,6 @@ int main(void) {
   vars->offset_y = 0;
   calc_mandelbrot(vars);
   mlx_hook(vars->win, 2, 1L << 0, &close_win, vars);
+  mlx_key_hook(vars->win, &movement, vars);
   mlx_loop(vars->mlx);
 }
