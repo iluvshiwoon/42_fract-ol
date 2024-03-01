@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:03:53 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/01 15:42:45 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/01 15:44:35 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include <math.h>
 #define VW 1920. / 2
 #define VH 1080. / 2
-#define PASS 30
+#define PASS 50
 
 typedef struct s_data {
     void *img;
