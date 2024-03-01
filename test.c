@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/01 19:40:49 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/01 19:41:57 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,6 @@ int calc_mandelbrot(t_vars *vars) {
           break;
         ++i;
       }
-      if (i == PASS)
-        my_mlx_put_pixel(&img, vars->p_x, vars->p_y, create_trgb(10, 10, 10, 10));
-      else
         my_mlx_put_pixel(
             &img, vars->p_x, vars->p_y,
             create_trgb((5 * i+ 30) % 255, (10 * i + 30) % 255, (20 * i+30) % 255, (30 * i+30) % 255));
