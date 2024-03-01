@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:03:53 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/01 18:16:42 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/01 18:57:05 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,15 @@ typedef struct s_data {
 typedef struct s_vars {
     void *mlx;
     void *win;
+    int view_width;
+    int view_height;
+
+    double min_r;
+    double max_r;
+
+    double min_i;
+    double max_i;
+
     int p_x;
     double offset_x;
     int p_y;
