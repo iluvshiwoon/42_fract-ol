@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/01 15:13:19 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/01 15:15:20 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int key_events(int keycode, t_vars *vars) {
     mlx_destroy_window(vars->mlx, vars->win);
     exit(0);
   }
-  else if (keycode == XK_d)
+  else if (keycode == XK_D)
     vars->offset_x += 2. / vars->zoom;
   else if (keycode == XK_a)
     vars->offset_x -= 2. / vars->zoom;
