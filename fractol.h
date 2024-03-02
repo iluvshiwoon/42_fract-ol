@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:03:53 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/01 18:57:05 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 14:44:31 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,10 @@ typedef struct s_vars {
     int zoom;
     double x;
     double y;
+
+    int is_pressed;
 } t_vars;
 
 int calc_mandelbrot(t_vars *vars);
+double scale(char axe, double x, t_vars *vars);
 # endif

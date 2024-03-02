@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 14:37:30 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 14:49:31 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,64 @@ int create_trgb(int t, int r, int g, int b) {
   return (t << 24 | r << 16 | g << 8 | b);
 }
 
+void move(t_vars * vars, char direction)
+{
+    while (direction == 'D' && vars->is_pressed)
+    {
+        vars->min_r -= scale('w', 1.,vars);
+        vars->max_r -= scale('w', 1.,vars);
+        calc_mandelbrot(vars);
+    }
+    while (direction == 'A' && vars->is_pressed)
+    {
+        vars->min_r += scale('w', 1.,vars);
+        vars->max_r += scale('w', 1.,vars);
+        calc_mandelbrot(vars);
+    }
+    while (direction == 'W' && vars->is_pressed)
+    {
+        vars->min_i -= scale('w', 1.,vars);
+        vars->max_i -= scale('w', 1.,vars);
+        calc_mandelbrot(vars);
+    }
+    while (direction == 'S'&& vars->is_pressed)
+    {
+        vars->min_i += scale('w', 1.,vars);
+        vars->max_i += scale('w', 1.,vars);
+        calc_mandelbrot(vars);
+    }
+}
+int key_released(int keycode, t_vars * vars)
+{
+  vars->is_pressed = 0;
+  if (keycode == KEY_ESC) {
+    mlx_destroy_window(vars->mlx, vars->win);
+    exit(0);
+  } else if (keycode == KEY_D)
+        move(vars, 'D');
+  else if (keycode == KEY_A)
+        move(vars, 'A');
+  else if (keycode == KEY_W)
+        move(vars, 'W');
+  else if (keycode == KEY_S)
+        move(vars, 'S');
+    return 1;
+}
 #include <stdio.h>
 int key_events(int keycode, t_vars *vars) {
+    vars->is_pressed = 1;
   printf("%d\n", keycode);
   if (keycode == KEY_ESC) {
     mlx_destroy_window(vars->mlx, vars->win);
     exit(0);
   } else if (keycode == KEY_D)
-    vars->offset_x += 2. / vars->zoom * 10;
+        move(vars, 'D');
   else if (keycode == KEY_A)
-    vars->offset_x -= 2. / vars->zoom * 10;
+        move(vars, 'A');
   else if (keycode == KEY_W)
-    vars->offset_y -= 2. / vars->zoom * 10;
+        move(vars, 'W');
   else if (keycode == KEY_S)
-    vars->offset_y += 2. / vars->zoom * 10;
+        move(vars, 'S');
   else if (keycode == KEY_PLUS)
     vars->zoom += 500;
   else if (keycode == KEY_MINUS)
@@ -133,6 +177,7 @@ int main(void) {
   calc_mandelbrot(vars);
   mlx_key_hook(vars->win, &key_events, vars);
   mlx_hook(vars->win, ON_KEYDOWN, (1L << 0), &key_events, vars);
+  mlx_hook(vars->win, ON_KEYUP, (1L << 0), &key_released, vars);
   mlx_hook(vars->win, ON_DESTROY, 0, &close_win, vars);
   mlx_loop(vars->mlx);
 }
