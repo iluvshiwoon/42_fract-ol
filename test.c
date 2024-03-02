@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 16:19:49 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 16:22:37 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int key_released(int keycode, t_vars *vars) {
     vars->is_pressed = 0;
   else
     return 0;
+    printf("%d\n",vars->is_pressed);
   return 1;
 }
 
@@ -97,7 +98,6 @@ double scale(char axe, double x, t_vars *vars) {
 }
 
 int render(t_vars *vars) {
-    printf("called\n");
   if (move(vars))
     calc_mandelbrot(vars);
   return 1;
@@ -173,6 +173,5 @@ int main(void) {
   mlx_hook(vars->win, ON_KEYDOWN, (1L << 0), &key_events, vars);
   mlx_hook(vars->win, ON_KEYUP, (1L << 1), &key_released, vars);
   mlx_hook(vars->win, ON_DESTROY, 0, &close_win, vars);
-  render(vars);
   mlx_loop(vars->mlx);
 }
