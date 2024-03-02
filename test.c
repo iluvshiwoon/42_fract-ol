@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 15:03:28 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 15:54:44 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,38 +34,44 @@ int key_released(int keycode, t_vars * vars)
     return 1;
 }
 
-void move(t_vars * vars, char direction)
+int move(t_vars * vars)
 {
-    while (vars->is_pressed)
+    if (vars->is_pressed)
     {
-        if (direction == 'D')
+        if (vars->direction == 'D')
             vars->offset_x += scale('w', 1.,vars);
-        else if (direction == 'A')
+        else if (vars->direction == 'A')
             vars->offset_x -= scale('w', 1.,vars);
-        else if (direction == 'W')
+        else if (vars->direction == 'W')
             vars->offset_y -= scale('w', 1.,vars);
-        else if (direction == 'S')
+        else if (vars->direction == 'S')
             vars->offset_y += scale('w', 1.,vars);
-        calc_mandelbrot(vars);
-        mlx_hook(vars->win, ON_KEYUP, (1L<<1), &key_released, vars);
+        return 1;
     }
+    return 0;
+
+}
+
+void set_key_pressed(t_vars * vars, char direction)
+{
+    vars->is_pressed = 1;
+    vars->direction = direction;
 }
 
 #include <stdio.h>
 int key_events(int keycode, t_vars *vars) {
-    vars->is_pressed = 1;
   printf("%d\n", keycode);
   if (keycode == KEY_ESC) {
     mlx_destroy_window(vars->mlx, vars->win);
     exit(0);
   } else if (keycode == KEY_D)
-        move(vars, 'D');
+        set_key_pressed(vars, 'D');
   else if (keycode == KEY_A)
-        move(vars, 'A');
+        set_key_pressed(vars, 'A');
   else if (keycode == KEY_W)
-        move(vars, 'W');
+        set_key_pressed(vars, 'W');
   else if (keycode == KEY_S)
-        move(vars, 'S');
+        set_key_pressed(vars, 'S');
   else if (keycode == KEY_PLUS)
     vars->zoom += 500;
   else if (keycode == KEY_MINUS)
@@ -92,6 +98,13 @@ double scale(char axe, double x, t_vars *vars) {
   return 0;
 }
 
+int render(t_vars * vars)
+{
+    if (move(vars))
+        calc_mandelbrot(vars);
+    return 1;
+}
+
 int calc_mandelbrot(t_vars *vars) {
   t_data img;
   int i;
@@ -100,16 +113,14 @@ int calc_mandelbrot(t_vars *vars) {
   double zr_temp;
 
   vars->p_x = 0;
-  // vars->x = -VW / vars->zoom + vars->offset_x;
-  vars->x = scale('w', 0., vars);
+  vars->x = scale('w', 0., vars) + vars->offset_x;
 
   img.img = mlx_new_image(vars->mlx, VW, VH);
   img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
                                &img.endian);
   while (vars->p_x < VW) {
     vars->p_y = 0;
-    // vars->y = -VH / vars->zoom + vars->offset_y;
-    vars->y = scale('h', 0., vars);
+    vars->y = scale('h', 0., vars) + vars->offset_y;
     while (vars->p_y < VH) {
       i = 0;
       zr = 0.0;
@@ -160,7 +171,9 @@ int main(void) {
   printf("%f\n", scale('h', vars->view_height, vars));
 
   calc_mandelbrot(vars);
-  mlx_key_hook(vars->win, &key_events, vars);
   mlx_hook(vars->win, ON_KEYDOWN, (1L << 0), &key_events, vars);
+  mlx_hook(vars->win, ON_KEYUP, (1L << 1), &key_released, vars);
+    mlx_loop_hook(vars->win, &render, vars);
   mlx_hook(vars->win, ON_DESTROY, 0, &close_win, vars);
+  mlx_loop(vars->mlx);
 }
