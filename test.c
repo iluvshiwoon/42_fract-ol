@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 16:13:34 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 16:15:23 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ double scale(char axe, double x, t_vars *vars) {
 }
 
 int render(t_vars *vars) {
+    printf("called\n");
   if (move(vars))
     calc_mandelbrot(vars);
   return 1;
