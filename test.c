@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 16:33:12 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 16:38:00 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,8 +170,8 @@ int main(void) {
   vars->win = mlx_new_window(vars->mlx, vars->view_width, vars->view_height,
                              "Fract-ol");
 
-  mlx_hook(vars->win, ON_KEYDOWN, KeyPressMask, &key_events, vars);
-  mlx_hook(vars->win, ON_KEYUP, KeyReleaseMask, &key_released, vars);
-  mlx_hook(vars->win, ON_DESTROY, 0, &close_win, vars);
+  mlx_hook(vars->win, KeyPress, KeyPressMask, &key_events, vars);
+  mlx_hook(vars->win, KeyRelease, KeyReleaseMask, &key_released, vars);
+  mlx_hook(vars->win, DestroyNotify, 0, &close_win, vars);
   mlx_loop(vars->mlx);
 }
