@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 14:25:23 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 14:37:30 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,9 @@ int key_events(int keycode, t_vars *vars) {
   return 1;
 }
 
-int close_win(t_vars * vars)
-{
-    mlx_destroy_window(vars->mlx, vars->win);
-    exit(0);
+int close_win(t_vars *vars) {
+  mlx_destroy_window(vars->mlx, vars->win);
+  exit(0);
 }
 
 double scale(char axe, double x, t_vars *vars) {
@@ -133,6 +132,7 @@ int main(void) {
 
   calc_mandelbrot(vars);
   mlx_key_hook(vars->win, &key_events, vars);
-    mlx_hook(vars->win, EVENT_CLOSE_BTN,0, &close_win, vars);
+  mlx_hook(vars->win, ON_KEYDOWN, (1L << 0), &key_events, vars);
+  mlx_hook(vars->win, ON_DESTROY, 0, &close_win, vars);
   mlx_loop(vars->mlx);
 }

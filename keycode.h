@@ -6,14 +6,16 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 18:16:03 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/01 18:16:07 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 14:36:24 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef KEYS_H
 # define KEYS_H
 
-# define EVENT_CLOSE_BTN 17
+# define ON_DESTROY 17
+# define ON_KEYDOWN 2
+# define ON_KEYUP 3
 # define KEY_ESC 65307
 # define KEY_W 119
 # define KEY_A 97
@@ -31,8 +33,8 @@
 # define KEY_THREE 51
 # define KEY_FOUR 52
 # define KEY_FIVE 53
-# define MOUSE_WHEEL_UP 4
-# define MOUSE_WHEEL_DOWN 5
+# define ON_MOUSEUP 5
+# define ON_MOUSEDOWN 4
 # define MOUSE_WHEEL_BTN 3
 # define MOUSE_BTN 1
 # define MOUSE_BTN_2 3
