@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 16:05:55 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 16:09:36 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ int key_released(int keycode, t_vars *vars) {
     vars->is_pressed = 0;
   else
     return 0;
-  printf("%d\n", vars->is_pressed);
   return 1;
 }
 
 int move(t_vars *vars) {
+    printf("%d\n",vars->is_pressed);
   if (vars->is_pressed) {
     if (vars->direction == 'D')
       vars->offset_x += 1;
@@ -49,7 +49,6 @@ int move(t_vars *vars) {
       vars->offset_y -= 1;
     else if (vars->direction == 'S')
       vars->offset_y += 1;
-    printf("%f\n", vars->offset_x);
     return 1;
   }
   return 0;
@@ -79,7 +78,6 @@ int key_events(int keycode, t_vars *vars) {
     vars->zoom -= 500;
   else
     return (0);
-  printf("%d\n", vars->is_pressed);
   return 1;
 }
 
@@ -151,7 +149,6 @@ int main(void) {
   vars = malloc(sizeof(*vars));
   vars->view_width = 1920 / 2;
   vars->view_height = 1080 / 2;
-  vars->mlx = mlx_init();
   vars->win = mlx_new_window(vars->mlx, vars->view_width, vars->view_height,
                              "Mandelbrot");
   vars->min_r = -4.0;
@@ -161,6 +158,7 @@ int main(void) {
   vars->zoom = 200;
   vars->offset_x = 0;
   vars->offset_y = 0;
+
   printf("%f\n", scale('w', 0., vars));
   printf("%f\n", scale('w', 1., vars));
   printf("%f\n", scale('w', vars->view_width, vars));
@@ -168,6 +166,8 @@ int main(void) {
   printf("%f\n", scale('h', 0., vars));
   printf("%f\n", scale('h', 1., vars));
   printf("%f\n", scale('h', vars->view_height, vars));
+
+  vars->mlx = mlx_init();
 
   mlx_hook(vars->win, ON_KEYDOWN, (1L << 0), &key_events, vars);
   mlx_hook(vars->win, ON_KEYUP, (1L << 1), &key_released, vars);
