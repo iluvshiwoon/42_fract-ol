@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 14:24:49 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 14:25:23 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,6 @@ int main(void) {
 
   calc_mandelbrot(vars);
   mlx_key_hook(vars->win, &key_events, vars);
-    mlx_hook(vars->win, EVENT_CLOSE_BTN, &close_win, vars);
+    mlx_hook(vars->win, EVENT_CLOSE_BTN,0, &close_win, vars);
   mlx_loop(vars->mlx);
 }
