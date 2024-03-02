@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 14:55:11 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 14:56:49 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,6 @@ int create_trgb(int t, int r, int g, int b) {
   return (t << 24 | r << 16 | g << 8 | b);
 }
 
-void move(t_vars * vars, char direction)
-{
-    while (direction == 'D' && vars->is_pressed)
-    {
-        vars->offset_x += scale('w', 1.,vars);
-        calc_mandelbrot(vars);
-    }
-    while (direction == 'A' && vars->is_pressed)
-    {
-        vars->offset_x -= scale('w', 1.,vars);
-        calc_mandelbrot(vars);
-    }
-    while (direction == 'W' && vars->is_pressed)
-    {
-        vars->offset_y -= scale('w', 1.,vars);
-        calc_mandelbrot(vars);
-    }
-    while (direction == 'S'&& vars->is_pressed)
-    {
-        vars->offset_y += scale('w', 1.,vars);
-        calc_mandelbrot(vars);
-    }
-}
 int key_released(int keycode, t_vars * vars)
 {
   vars->is_pressed = 0;
@@ -56,6 +33,35 @@ int key_released(int keycode, t_vars * vars)
         vars->is_pressed = 0;
     return 1;
 }
+
+void move(t_vars * vars, char direction)
+{
+    while (direction == 'D' && vars->is_pressed)
+    {
+        vars->offset_x += scale('w', 1.,vars);
+        calc_mandelbrot(vars);
+        mlx_hook(vars->win, ON_KEYUP, (1L << 1), &key_released, vars);
+    }
+    while (direction == 'A' && vars->is_pressed)
+    {
+        vars->offset_x -= scale('w', 1.,vars);
+        calc_mandelbrot(vars);
+        mlx_hook(vars->win, ON_KEYUP, (1L << 1), &key_released, vars);
+    }
+    while (direction == 'W' && vars->is_pressed)
+    {
+        vars->offset_y -= scale('w', 1.,vars);
+        calc_mandelbrot(vars);
+        mlx_hook(vars->win, ON_KEYUP, (1L << 1), &key_released, vars);
+    }
+    while (direction == 'S'&& vars->is_pressed)
+    {
+        vars->offset_y += scale('w', 1.,vars);
+        calc_mandelbrot(vars);
+        mlx_hook(vars->win, ON_KEYUP, (1L << 1), &key_released, vars);
+    }
+}
+
 #include <stdio.h>
 int key_events(int keycode, t_vars *vars) {
     vars->is_pressed = 1;
@@ -167,7 +173,6 @@ int main(void) {
   calc_mandelbrot(vars);
   mlx_key_hook(vars->win, &key_events, vars);
   mlx_hook(vars->win, ON_KEYDOWN, (1L << 0), &key_events, vars);
-  mlx_hook(vars->win, ON_KEYUP, (1L << 1), &key_released, vars);
   mlx_hook(vars->win, ON_DESTROY, 0, &close_win, vars);
   mlx_loop(vars->mlx);
 }
