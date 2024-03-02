@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 14:52:24 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 14:55:11 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,7 @@ int key_released(int keycode, t_vars * vars)
     mlx_destroy_window(vars->mlx, vars->win);
     exit(0);
   } else if (keycode == KEY_D)
-        move(vars, 'D');
-  else if (keycode == KEY_A)
-        move(vars, 'A');
-  else if (keycode == KEY_W)
-        move(vars, 'W');
-  else if (keycode == KEY_S)
-        move(vars, 'S');
+        vars->is_pressed = 0;
     return 1;
 }
 #include <stdio.h>
