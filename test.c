@@ -6,15 +6,15 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 17:07:25 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 17:52:00 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "keycode.h"
 
+#include <X11/X.h>
 #include <stdio.h>
-#include<X11/X.h>
 void my_mlx_put_pixel(t_data *data, int x, int y, int color) {
   char *dst;
   dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
@@ -26,7 +26,7 @@ int create_trgb(int t, int r, int g, int b) {
 }
 
 int key_released(int keycode, t_vars *vars) {
-    printf("RELEASED:%d\n",keycode);
+  printf("RELEASED:%d\n", keycode);
   if (keycode == KEY_D)
     vars->is_pressed = 0;
   else if (keycode == KEY_A)
@@ -40,6 +40,14 @@ int key_released(int keycode, t_vars *vars) {
   return 1;
 }
 
+void zoom(t_vars * vars ,double zoom)
+{
+       vars->min_r *= zoom; 
+       vars->max_r *= zoom; 
+       vars->min_i *= zoom; 
+       vars->max_i *= zoom; 
+}
+
 int move(t_vars *vars) {
   if (vars->is_pressed) {
     if (vars->direction == 'D')
@@ -50,6 +58,17 @@ int move(t_vars *vars) {
       vars->offset_y -= 1;
     else if (vars->direction == 'S')
       vars->offset_y += 1;
+    else if (vars->direction == '+')
+        {
+        vars->zoom += 0.1;
+        zoom(vars,vars->zoom);
+    }
+    else if (vars->direction == '-')
+        {
+        vars->zoom -= 0.1;
+        zoom(vars,vars->zoom);
+    }
+
     return 1;
   }
   return 0;
@@ -76,9 +95,9 @@ int key_events(int keycode, t_vars *vars) {
   else if (keycode == KEY_S)
     set_key_pressed(vars, 'S');
   else if (keycode == KEY_PLUS)
-    vars->zoom += 500;
+    set_key_pressed(vars, '+');
   else if (keycode == KEY_MINUS)
-    vars->zoom -= 500;
+    set_key_pressed(vars, '-');
   else
     return (0);
   return 1;
@@ -100,7 +119,7 @@ double scale(char axe, double x, t_vars *vars) {
 }
 
 int render(t_vars *vars) {
-    printf("called");
+  printf("called");
   if (move(vars))
     calc_mandelbrot(vars);
   return 1;
@@ -157,7 +176,7 @@ int main(void) {
   vars->max_r = 4.0;
   vars->min_i = -2.23;
   vars->max_i = 4.0;
-  vars->zoom = 200;
+  vars->zoom = 1;
   vars->offset_x = 0;
   vars->offset_y = 0;
 
@@ -170,12 +189,12 @@ int main(void) {
   printf("%f\n", scale('h', vars->view_height, vars));
 
   vars->mlx = mlx_init();
-    mlx_do_key_autorepeaton(vars->mlx);
-    
+  mlx_do_key_autorepeaton(vars->mlx);
+
   vars->win = mlx_new_window(vars->mlx, vars->view_width, vars->view_height,
                              "Fract-ol");
 
-    calc_mandelbrot(vars);
+  calc_mandelbrot(vars);
   mlx_hook(vars->win, KeyPress, KeyPressMask, &key_events, vars);
   // mlx_hook(vars->win, KeyRelease, KeyReleaseMask, &key_released, vars);
   mlx_hook(vars->win, DestroyNotify, 0, &close_win, vars);

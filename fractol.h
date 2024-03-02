@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:03:53 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 15:45:04 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 17:47:33 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_vars {
     double offset_x;
     int p_y;
     double offset_y;
-    int zoom;
+    double zoom;
     double x;
     double y;
 
