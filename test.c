@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 18:24:58 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 18:26:36 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,14 +122,14 @@ int calc_mandelbrot(t_vars *vars) {
   double zr_temp;
 
   vars->p_x = 0;
-  vars->x = scale('w', 0. + vars->offset_x , vars)*vars->zoom;
+  vars->x = scale('w', 0. + vars->offset_x , vars)*vars->zoom*4;
 
   img.img = mlx_new_image(vars->mlx, VW, VH);
   img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
                                &img.endian);
   while (vars->p_x < VW) {
     vars->p_y = 0;
-    vars->y = scale('h', 0. + vars->offset_y , vars)*vars->zoom;
+    vars->y = scale('h', 0. + vars->offset_y , vars)*vars->zoom*4;
     while (vars->p_y < VH) {
       i = 0;
       zr = 0.0;
