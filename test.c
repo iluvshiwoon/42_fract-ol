@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 16:58:21 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 16:59:31 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,8 @@ int main(void) {
   printf("%f\n", scale('h', vars->view_height, vars));
 
   vars->mlx = mlx_init();
-    // mlx_do_key_autorepeatoff(vars->mlx);
+    mlx_do_key_autorepeaton(vars->mlx);
+    
   vars->win = mlx_new_window(vars->mlx, vars->view_width, vars->view_height,
                              "Fract-ol");
 
