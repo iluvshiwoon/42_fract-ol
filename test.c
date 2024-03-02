@@ -6,11 +6,12 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/01 19:43:26 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 14:24:49 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+#include "keycode.h"
 
 void my_mlx_put_pixel(t_data *data, int x, int y, int color) {
   char *dst;
@@ -45,6 +46,12 @@ int key_events(int keycode, t_vars *vars) {
     return (0);
   calc_mandelbrot(vars);
   return 1;
+}
+
+int close_win(t_vars * vars)
+{
+    mlx_destroy_window(vars->mlx, vars->win);
+    exit(0);
 }
 
 double scale(char axe, double x, t_vars *vars) {
@@ -87,15 +94,13 @@ int calc_mandelbrot(t_vars *vars) {
           break;
         ++i;
       }
-        my_mlx_put_pixel(
-            &img, vars->p_x, vars->p_y,
-            create_trgb((5 * i+ 30) % 255, (10 * i + 30) % 255, (20 * i+30) % 255, (30 * i+30) % 255));
+      my_mlx_put_pixel(&img, vars->p_x, vars->p_y,
+                       create_trgb((5 * i + 30) % 255, (10 * i + 30) % 255,
+                                   (20 * i + 30) % 255, (30 * i + 30) % 255));
       ++(vars->p_y);
-      // vars->y += 2. / vars->zoom;
       vars->y += scale('w', 1., vars) - scale('w', 0., vars);
     }
     ++(vars->p_x);
-    // vars->x += 2. / vars->zoom;
     vars->x += scale('w', 1., vars) - scale('w', 0., vars);
   }
   mlx_put_image_to_window(vars->mlx, vars->win, img.img, 0, 0);
@@ -128,5 +133,6 @@ int main(void) {
 
   calc_mandelbrot(vars);
   mlx_key_hook(vars->win, &key_events, vars);
+    mlx_hook(vars->win, EVENT_CLOSE_BTN, &close_win, vars);
   mlx_loop(vars->mlx);
 }
