@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 16:52:38 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 16:53:44 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,5 +174,6 @@ int main(void) {
   mlx_hook(vars->win, KeyPress, KeyPressMask, &key_events, vars);
   mlx_hook(vars->win, KeyRelease, KeyReleaseMask, &key_released, vars);
   mlx_hook(vars->win, DestroyNotify, 0, &close_win, vars);
+    render(vars);
   mlx_loop(vars->mlx);
 }
