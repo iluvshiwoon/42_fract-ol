@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 18:03:35 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 18:05:51 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,6 @@ int key_released(int keycode, t_vars *vars) {
   return 1;
 }
 
-void zoom(t_vars *vars, double zoom) {
-  vars->min_r *= zoom;
-  vars->max_r *= zoom;
-  vars->min_i *= zoom;
-  vars->max_i *= zoom;
-}
-
 int move(t_vars *vars) {
   if (vars->is_pressed) {
     if (vars->direction == 'D')
@@ -59,10 +52,8 @@ int move(t_vars *vars) {
       vars->offset_y += 1;
     else if (vars->direction == '+') {
       vars->zoom -= 0.1;
-      zoom(vars, vars->zoom);
     } else if (vars->direction == '-') {
       vars->zoom += 1.1;
-      zoom(vars, vars->zoom);
     }
 
     return 1;
@@ -106,11 +97,11 @@ int close_win(t_vars *vars) {
 
 double scale(char axe, double x, t_vars *vars) {
   if (axe == 'w')
-    return (((vars->max_r - vars->min_r) * (x - 0)) / (vars->view_width - 0) +
-            vars->min_r);
+    return ((((vars->max_r - vars->min_r) * (x - 0)) / (vars->view_width - 0) +
+            vars->min_r)*vars->zoom);
   else if (axe == 'h')
-    return (((vars->max_i - vars->min_i) * (x - 0)) / (vars->view_height - 0) +
-            vars->min_i);
+    return ((((vars->max_i - vars->min_i) * (x - 0)) / (vars->view_height - 0) +
+            vars->min_i)*vars->zoom);
   return 0;
 }
 
