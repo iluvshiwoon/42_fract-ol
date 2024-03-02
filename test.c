@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 16:55:56 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 16:57:02 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,13 +168,13 @@ int main(void) {
   printf("%f\n", scale('h', vars->view_height, vars));
 
   vars->mlx = mlx_init();
-    mlx_do_key_autorepeatoff(vars->mlx);
+    // mlx_do_key_autorepeatoff(vars->mlx);
   vars->win = mlx_new_window(vars->mlx, vars->view_width, vars->view_height,
                              "Fract-ol");
 
     calc_mandelbrot(vars);
   mlx_hook(vars->win, KeyPress, KeyPressMask, &key_events, vars);
-  mlx_hook(vars->win, KeyRelease, KeyReleaseMask, &key_released, vars);
+  // mlx_hook(vars->win, KeyRelease, KeyReleaseMask, &key_released, vars);
   mlx_hook(vars->win, DestroyNotify, 0, &close_win, vars);
   mlx_loop_hook(vars->win, &render, vars);
   mlx_loop(vars->mlx);
