@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 16:32:30 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 16:33:12 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int create_trgb(int t, int r, int g, int b) {
 }
 
 int key_released(int keycode, t_vars *vars) {
-    printf("%d\n",keycode);
+    printf("RELEASED:%d\n",keycode);
   if (keycode == KEY_D)
     vars->is_pressed = 0;
   else if (keycode == KEY_A)
