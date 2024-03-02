@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:03:53 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 17:47:33 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 19:21:34 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "keycode.h"
 #define VW 1920. / 2
 #define VH 1080. / 2
-#define PASS 50
+#define PASS 500
 
 typedef struct s_data {
     void *img;
