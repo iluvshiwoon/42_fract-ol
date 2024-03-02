@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 14:56:49 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 14:58:09 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void move(t_vars * vars, char direction)
         calc_mandelbrot(vars);
         mlx_hook(vars->win, ON_KEYUP, (1L << 1), &key_released, vars);
     }
+    mlx_loop(vars->mlx);
 }
 
 #include <stdio.h>
