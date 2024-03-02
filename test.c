@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 18:30:03 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 18:32:23 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ int key_released(int keycode, t_vars *vars) {
 int move(t_vars *vars) {
   if (vars->is_pressed) {
     if (vars->direction == 'D')
-      vars->offset_x += 1*vars->zoom;
+      vars->offset_x += 4*vars->zoom;
     else if (vars->direction == 'A')
-      vars->offset_x -= 1*vars->zoom;
+      vars->offset_x -= 4*vars->zoom;
     else if (vars->direction == 'W')
-      vars->offset_y -= 1*vars->zoom;
+      vars->offset_y -= 4*vars->zoom;
     else if (vars->direction == 'S')
-      vars->offset_y += 1*vars->zoom;
+      vars->offset_y += 4*vars->zoom;
     else if (vars->direction == '+') {
       vars->zoom -= vars->zoom / 10;
             printf("%f\n", vars->zoom);
