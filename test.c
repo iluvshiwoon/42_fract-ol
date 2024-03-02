@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 14:49:31 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 14:52:24 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,22 @@ void move(t_vars * vars, char direction)
 {
     while (direction == 'D' && vars->is_pressed)
     {
-        vars->min_r -= scale('w', 1.,vars);
-        vars->max_r -= scale('w', 1.,vars);
+        vars->offset_x += scale('w', 1.,vars);
         calc_mandelbrot(vars);
     }
     while (direction == 'A' && vars->is_pressed)
     {
-        vars->min_r += scale('w', 1.,vars);
-        vars->max_r += scale('w', 1.,vars);
+        vars->offset_x -= scale('w', 1.,vars);
         calc_mandelbrot(vars);
     }
     while (direction == 'W' && vars->is_pressed)
     {
-        vars->min_i -= scale('w', 1.,vars);
-        vars->max_i -= scale('w', 1.,vars);
+        vars->offset_y -= scale('w', 1.,vars);
         calc_mandelbrot(vars);
     }
     while (direction == 'S'&& vars->is_pressed)
     {
-        vars->min_i += scale('w', 1.,vars);
-        vars->max_i += scale('w', 1.,vars);
+        vars->offset_y += scale('w', 1.,vars);
         calc_mandelbrot(vars);
     }
 }
@@ -177,7 +173,7 @@ int main(void) {
   calc_mandelbrot(vars);
   mlx_key_hook(vars->win, &key_events, vars);
   mlx_hook(vars->win, ON_KEYDOWN, (1L << 0), &key_events, vars);
-  mlx_hook(vars->win, ON_KEYUP, (1L << 0), &key_released, vars);
+  mlx_hook(vars->win, ON_KEYUP, (1L << 1), &key_released, vars);
   mlx_hook(vars->win, ON_DESTROY, 0, &close_win, vars);
   mlx_loop(vars->mlx);
 }
