@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 16:22:37 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 16:25:03 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,7 @@ int main(void) {
   vars->zoom = 200;
   vars->offset_x = 0;
   vars->offset_y = 0;
+    vars->is_pressed = 0;
 
   printf("%f\n", scale('w', 0., vars));
   printf("%f\n", scale('w', 1., vars));
@@ -170,7 +171,8 @@ int main(void) {
   vars->win = mlx_new_window(vars->mlx, vars->view_width, vars->view_height,
                              "Fract-ol");
 
-  mlx_hook(vars->win, ON_KEYDOWN, (1L << 0), &key_events, vars);
+    if (vars->is_pressed == 0)
+      mlx_hook(vars->win, ON_KEYDOWN, (1L << 0), &key_events, vars);
   mlx_hook(vars->win, ON_KEYUP, (1L << 1), &key_released, vars);
   mlx_hook(vars->win, ON_DESTROY, 0, &close_win, vars);
   mlx_loop(vars->mlx);
