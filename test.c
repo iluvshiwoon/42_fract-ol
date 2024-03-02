@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 14:58:09 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 15:01:41 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,31 +36,19 @@ int key_released(int keycode, t_vars * vars)
 
 void move(t_vars * vars, char direction)
 {
-    while (direction == 'D' && vars->is_pressed)
+    while (vars->is_pressed)
     {
-        vars->offset_x += scale('w', 1.,vars);
+        if (direction == 'D')
+            vars->offset_x += scale('w', 1.,vars);
+        else if (direction == 'A')
+            vars->offset_x -= scale('w', 1.,vars);
+        else if (direction == 'W')
+            vars->offset_y -= scale('w', 1.,vars);
+        else if (direction == 'S')
+            vars->offset_y += scale('w', 1.,vars);
         calc_mandelbrot(vars);
-        mlx_hook(vars->win, ON_KEYUP, (1L << 1), &key_released, vars);
+        mlx_hook(vars->win, ON_KEYUP, (1L<<1), &key_released, vars);
     }
-    while (direction == 'A' && vars->is_pressed)
-    {
-        vars->offset_x -= scale('w', 1.,vars);
-        calc_mandelbrot(vars);
-        mlx_hook(vars->win, ON_KEYUP, (1L << 1), &key_released, vars);
-    }
-    while (direction == 'W' && vars->is_pressed)
-    {
-        vars->offset_y -= scale('w', 1.,vars);
-        calc_mandelbrot(vars);
-        mlx_hook(vars->win, ON_KEYUP, (1L << 1), &key_released, vars);
-    }
-    while (direction == 'S'&& vars->is_pressed)
-    {
-        vars->offset_y += scale('w', 1.,vars);
-        calc_mandelbrot(vars);
-        mlx_hook(vars->win, ON_KEYUP, (1L << 1), &key_released, vars);
-    }
-    mlx_loop(vars->mlx);
 }
 
 #include <stdio.h>
