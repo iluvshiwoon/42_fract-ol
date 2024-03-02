@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 19:16:58 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 19:22:57 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,11 @@ int close_win(t_vars *vars) {
 
 double scale(char axe, double x, t_vars *vars) {
   if (axe == 'w')
-    return ((((vars->max_r - vars->min_r - vars->zoom) * (x - 0)) / (vars->view_width - 0) +
-            vars->min_r + vars->zoom/2)/* *vars->zoom */);
+    return ((((vars->max_r - vars->min_r) * (x - 0)) / (vars->view_width - 0) +
+            vars->min_r)*vars->zoom);
   else if (axe == 'h')
     return ((((vars->max_i - vars->min_i) * (x - 0)) / (vars->view_height - 0) +
-            vars->min_i)/* *vars->zoom */);
+            vars->min_i)*vars->zoom);
   return 0;
 }
 
