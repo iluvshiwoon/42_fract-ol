@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 16:02:52 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 16:05:55 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,17 @@ int create_trgb(int t, int r, int g, int b) {
 }
 
 int key_released(int keycode, t_vars *vars) {
-  vars->is_pressed = 0;
-    printf("%d\n",vars->is_pressed);
-  if (keycode == KEY_ESC) {
-    mlx_destroy_window(vars->mlx, vars->win);
-    exit(0);
-  } else if (keycode == KEY_D)
+  if (keycode == KEY_D)
     vars->is_pressed = 0;
+  else if (keycode == KEY_A)
+    vars->is_pressed = 0;
+  else if (keycode == KEY_W)
+    vars->is_pressed = 0;
+  else if (keycode == KEY_S)
+    vars->is_pressed = 0;
+  else
+    return 0;
+  printf("%d\n", vars->is_pressed);
   return 1;
 }
 
@@ -45,7 +49,7 @@ int move(t_vars *vars) {
       vars->offset_y -= 1;
     else if (vars->direction == 'S')
       vars->offset_y += 1;
-        printf("%f\n",vars->offset_x);
+    printf("%f\n", vars->offset_x);
     return 1;
   }
   return 0;
@@ -75,7 +79,7 @@ int key_events(int keycode, t_vars *vars) {
     vars->zoom -= 500;
   else
     return (0);
-    printf("%d\n",vars->is_pressed);
+  printf("%d\n", vars->is_pressed);
   return 1;
 }
 
