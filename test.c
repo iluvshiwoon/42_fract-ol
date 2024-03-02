@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 16:57:02 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 16:58:21 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ int move(t_vars *vars) {
 void set_key_pressed(t_vars *vars, char direction) {
   vars->is_pressed = 1;
   vars->direction = direction;
+  move(vars);
+  calc_mandelbrot(vars);
 }
 
 int key_events(int keycode, t_vars *vars) {
@@ -174,8 +176,7 @@ int main(void) {
 
     calc_mandelbrot(vars);
   mlx_hook(vars->win, KeyPress, KeyPressMask, &key_events, vars);
-  // mlx_hook(vars->win, KeyRelease, KeyReleaseMask, &key_released, vars);
+  mlx_hook(vars->win, KeyRelease, KeyReleaseMask, &key_released, vars);
   mlx_hook(vars->win, DestroyNotify, 0, &close_win, vars);
-  mlx_loop_hook(vars->win, &render, vars);
   mlx_loop(vars->mlx);
 }
