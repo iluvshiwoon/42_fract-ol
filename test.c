@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 16:09:36 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 16:10:39 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,8 +149,6 @@ int main(void) {
   vars = malloc(sizeof(*vars));
   vars->view_width = 1920 / 2;
   vars->view_height = 1080 / 2;
-  vars->win = mlx_new_window(vars->mlx, vars->view_width, vars->view_height,
-                             "Mandelbrot");
   vars->min_r = -4.0;
   vars->max_r = 4.0;
   vars->min_i = -2.23;
@@ -168,6 +166,8 @@ int main(void) {
   printf("%f\n", scale('h', vars->view_height, vars));
 
   vars->mlx = mlx_init();
+  vars->win = mlx_new_window(vars->mlx, vars->view_width, vars->view_height,
+                             "Fract-ol");
 
   mlx_hook(vars->win, ON_KEYDOWN, (1L << 0), &key_events, vars);
   mlx_hook(vars->win, ON_KEYUP, (1L << 1), &key_released, vars);
