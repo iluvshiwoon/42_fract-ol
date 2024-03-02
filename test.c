@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 17:52:00 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/02 18:03:35 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,11 @@ int key_released(int keycode, t_vars *vars) {
   return 1;
 }
 
-void zoom(t_vars * vars ,double zoom)
-{
-       vars->min_r *= zoom; 
-       vars->max_r *= zoom; 
-       vars->min_i *= zoom; 
-       vars->max_i *= zoom; 
+void zoom(t_vars *vars, double zoom) {
+  vars->min_r *= zoom;
+  vars->max_r *= zoom;
+  vars->min_i *= zoom;
+  vars->max_i *= zoom;
 }
 
 int move(t_vars *vars) {
@@ -58,15 +57,12 @@ int move(t_vars *vars) {
       vars->offset_y -= 1;
     else if (vars->direction == 'S')
       vars->offset_y += 1;
-    else if (vars->direction == '+')
-        {
-        vars->zoom += 0.1;
-        zoom(vars,vars->zoom);
-    }
-    else if (vars->direction == '-')
-        {
-        vars->zoom -= 0.1;
-        zoom(vars,vars->zoom);
+    else if (vars->direction == '+') {
+      vars->zoom -= 0.1;
+      zoom(vars, vars->zoom);
+    } else if (vars->direction == '-') {
+      vars->zoom += 1.1;
+      zoom(vars, vars->zoom);
     }
 
     return 1;
