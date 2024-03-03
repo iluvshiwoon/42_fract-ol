@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/03 18:01:13 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/03 18:06:55 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ int key_released(int keycode, t_vars *vars) {
 }
 
 int move(t_vars *vars) {
+    double center_r;
+    double center_i;
+
+    center_r = vars->min_r - vars->max_r;
+    center_i = vars->max_r - vars->min_r;
   if (vars->is_pressed) {
     if (vars->direction == 'D')
       vars->offset_x += 4 * vars->zoom;
@@ -52,19 +57,18 @@ int move(t_vars *vars) {
       vars->offset_y += 4 * vars->zoom;
     else if (vars->direction == '+') {
       vars->zoom -= vars->zoom / 10;
-      vars->min_r *= vars->zoom;
-      vars->max_r *= vars->zoom;
-      vars->min_i *= vars->zoom;
-      vars->max_i *= vars->zoom;
+      vars->max_r += center_r - center_r * vars->zoom;
+      vars->min_r += center_r * vars->zoom;
+      vars->min_i += center_i - center_i * vars->zoom;
+      vars->max_i += center_i * vars->zoom;
 
       printf("%f\n", vars->zoom);
     } else if (vars->direction == '-') {
       vars->zoom += vars->zoom / 10;
-      vars->min_r /= vars->zoom;
-      vars->max_r /= vars->zoom;
-      vars->min_i /= vars->zoom;
-      vars->max_i /= vars->zoom;
-
+      vars->max_r += center_r - center_r * vars->zoom;
+      vars->min_r += center_r * vars->zoom;
+      vars->min_i += center_i - center_i * vars->zoom;
+      vars->max_i += center_i * vars->zoom;
       printf("%f\n", vars->zoom);
     }
     return 1;
