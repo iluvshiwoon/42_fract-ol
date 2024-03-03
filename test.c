@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/03 18:15:01 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/03 18:30:40 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,20 @@ int key_released(int keycode, t_vars *vars) {
   return 1;
 }
 
+double center(double max, double min) {
+  if (max >= 0 && min <= 0)
+    return (max + min);
+  else
+    return ((max + min) / 2);
+}
+
 int move(t_vars *vars) {
+  double center_r;
+  double center_i;
+
+  center_r = center(vars->max_r, vars->min_r);
+  center_i = center(vars->max_i, vars->min_i);
+
   if (vars->is_pressed) {
     if (vars->direction == 'D')
       vars->offset_x += 4 * vars->zoom;
@@ -52,18 +65,18 @@ int move(t_vars *vars) {
       vars->offset_y += 4 * vars->zoom;
     else if (vars->direction == '+') {
       vars->zoom = 0.5;
-      vars->min_r *= vars->zoom;
-      vars->max_r *= vars->zoom;
-      vars->min_i *= vars->zoom;
-      vars->max_i *= vars->zoom;
+      vars->min_r += vars->min_r * vars->zoom + center_r/2;
+      vars->max_r += vars->max_r * vars->zoom + center_r/2;
+      vars->min_i += vars->min_i * vars->zoom + center_i/2;
+      vars->max_i += vars->max_i * vars->zoom + center_i/2;
 
       printf("%f\n", vars->zoom);
     } else if (vars->direction == '-') {
       vars->zoom = 2;
-      vars->min_r *= vars->zoom;
-      vars->max_r *= vars->zoom;
-      vars->min_i *= vars->zoom;
-      vars->max_i *= vars->zoom;
+      vars->min_r += vars->min_r * vars->zoom;
+      vars->max_r += vars->max_r * vars->zoom;
+      vars->min_i += vars->min_i * vars->zoom;
+      vars->max_i += vars->max_i * vars->zoom;
 
       printf("%f\n", vars->zoom);
     }
