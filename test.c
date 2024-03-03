@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 19:22:57 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/03 17:56:20 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,10 @@ void set_key_pressed(t_vars *vars, char direction) {
   vars->is_pressed = 1;
   vars->direction = direction;
   move(vars);
+  vars->min_r *= vars->zoom;
+  vars->max_r *= vars->zoom;
+  vars->min_i *= vars->zoom;
+  vars->max_i *= vars->zoom;
   calc_mandelbrot(vars);
 }
 
@@ -100,10 +104,10 @@ int close_win(t_vars *vars) {
 double scale(char axe, double x, t_vars *vars) {
   if (axe == 'w')
     return ((((vars->max_r - vars->min_r) * (x - 0)) / (vars->view_width - 0) +
-            vars->min_r)*vars->zoom);
+            vars->min_r));
   else if (axe == 'h')
     return ((((vars->max_i - vars->min_i) * (x - 0)) / (vars->view_height - 0) +
-            vars->min_i)*vars->zoom);
+            vars->min_i));
   return 0;
 }
 
