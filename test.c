@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/03 21:11:02 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/03 21:12:35 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,17 @@ int key_released(int keycode, t_vars *vars) {
   return 1;
 }
 
-long double center(long double max, long double min) {
+double center(double max, double min) {
   if (max >= 0 && min <= 0)
     return (max + min);
   else
     return ((max + min) / 2);
 }
 
-void recenter(long double center_r,long double center_i, t_vars * vars)
+void recenter(double center_r,double center_i, t_vars * vars)
 {
-    long double new_center_r;
-    long double new_center_i;
+    double new_center_r;
+    double new_center_i;
 
     new_center_r = center(vars->max_r, vars->min_r);
     new_center_i = center(vars->max_i, vars->min_i);
@@ -77,8 +77,8 @@ void recenter(long double center_r,long double center_i, t_vars * vars)
     }
 }
 int move(t_vars *vars) {
-  long double center_r;
-  long double center_i;
+  double center_r;
+  double center_i;
 
   vars->center_r = center(vars->max_r, vars->min_r);
   vars->center_i = center(vars->max_i, vars->min_i);
@@ -157,7 +157,7 @@ int close_win(t_vars *vars) {
   exit(0);
 }
 
-long double scale(char axe, long double x, t_vars *vars) {
+double scale(char axe, double x, t_vars *vars) {
   if (axe == 'w')
     return ((((vars->max_r - vars->min_r) * (x - 0)) / (vars->view_width - 0) +
              vars->min_r));
@@ -177,9 +177,9 @@ int render(t_vars *vars) {
 int calc_mandelbrot(t_vars *vars) {
   t_data img;
   int i;
-  long double zr;
-  long double zi;
-  long double zr_temp;
+  double zr;
+  double zi;
+  double zr_temp;
 
   vars->p_x = 0;
   vars->x = scale('w', vars->offset_x, vars);
