@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/03 17:56:20 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/03 18:00:21 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,30 @@ int key_released(int keycode, t_vars *vars) {
 int move(t_vars *vars) {
   if (vars->is_pressed) {
     if (vars->direction == 'D')
-      vars->offset_x += 4*vars->zoom;
+      vars->offset_x += 4 * vars->zoom;
     else if (vars->direction == 'A')
-      vars->offset_x -= 4*vars->zoom;
+      vars->offset_x -= 4 * vars->zoom;
     else if (vars->direction == 'W')
-      vars->offset_y -= 4*vars->zoom;
+      vars->offset_y -= 4 * vars->zoom;
     else if (vars->direction == 'S')
-      vars->offset_y += 4*vars->zoom;
+      vars->offset_y += 4 * vars->zoom;
     else if (vars->direction == '+') {
       vars->zoom -= vars->zoom / 10;
-            printf("%f\n", vars->zoom);
+      vars->min_r *= vars->zoom;
+      vars->max_r *= vars->zoom;
+      vars->min_i *= vars->zoom;
+      vars->max_i *= vars->zoom;
+
+      printf("%f\n", vars->zoom);
     } else if (vars->direction == '-') {
       vars->zoom += vars->zoom / 10;
-            printf("%f\n", vars->zoom);
-    }
+      vars->min_r *= vars->zoom;
+      vars->max_r *= vars->zoom;
+      vars->min_i *= vars->zoom;
+      vars->max_i *= vars->zoom;
 
+      printf("%f\n", vars->zoom);
+    }
     return 1;
   }
   return 0;
@@ -67,10 +76,6 @@ void set_key_pressed(t_vars *vars, char direction) {
   vars->is_pressed = 1;
   vars->direction = direction;
   move(vars);
-  vars->min_r *= vars->zoom;
-  vars->max_r *= vars->zoom;
-  vars->min_i *= vars->zoom;
-  vars->max_i *= vars->zoom;
   calc_mandelbrot(vars);
 }
 
@@ -104,10 +109,10 @@ int close_win(t_vars *vars) {
 double scale(char axe, double x, t_vars *vars) {
   if (axe == 'w')
     return ((((vars->max_r - vars->min_r) * (x - 0)) / (vars->view_width - 0) +
-            vars->min_r));
+             vars->min_r));
   else if (axe == 'h')
     return ((((vars->max_i - vars->min_i) * (x - 0)) / (vars->view_height - 0) +
-            vars->min_i));
+             vars->min_i));
   return 0;
 }
 
@@ -126,14 +131,14 @@ int calc_mandelbrot(t_vars *vars) {
   double zr_temp;
 
   vars->p_x = 0;
-  vars->x = scale('w', 0. + vars->offset_x , vars);
+  vars->x = scale('w', 0. + vars->offset_x, vars);
 
   img.img = mlx_new_image(vars->mlx, VW, VH);
   img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
                                &img.endian);
   while (vars->p_x < VW) {
     vars->p_y = 0;
-    vars->y = scale('h', 0. + vars->offset_y , vars);
+    vars->y = scale('h', 0. + vars->offset_y, vars);
     while (vars->p_y < VH) {
       i = 0;
       zr = 0.0;
