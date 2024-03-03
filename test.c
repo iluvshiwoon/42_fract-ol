@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/03 19:56:26 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/03 19:59:05 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ int move(t_vars *vars) {
 
   center_r = center(vars->max_r, vars->min_r);
   center_i = center(vars->max_i, vars->min_i);
-  printf("R %f %f %f\n I %f %f %f\n", vars->min_r, center_r, vars->max_r,
-         vars->min_i, center_i, vars->max_i);
+  printf("R %f %f %f\n I %f %f %f\n%f", vars->min_r, center_r, vars->max_r,
+         vars->min_i, center_i, vars->max_i,vars->zoom);
 
   if (vars->is_pressed) {
     if (vars->direction == 'D')
@@ -68,9 +68,9 @@ int move(t_vars *vars) {
     else if (vars->direction == '+') {
       vars->zoom = 0.5;
       vars->min_r = vars->min_r * vars->zoom + center_r * vars->zoom;
-      vars->max_r = vars->max_r * vars->zoom + center_r / 2;
-      vars->min_i = vars->min_i * vars->zoom + center_i / 2;
-      vars->max_i = vars->max_i * vars->zoom + center_i / 2;
+      vars->max_r = vars->max_r * vars->zoom + center_r * vars->zoom;
+      vars->min_i = vars->min_i * vars->zoom + center_i * vars->zoom;
+      vars->max_i = vars->max_i * vars->zoom + center_i * vars->zoom;
 
       printf("%f\n", vars->zoom);
     } else if (vars->direction == '-') {
