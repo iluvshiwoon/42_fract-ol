@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:03:53 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/03 21:05:05 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/03 21:09:40 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,26 +34,26 @@ typedef struct s_vars {
     int view_width;
     int view_height;
 
-    double min_r;
-    double max_r;
+    long double min_r;
+    long double max_r;
 
-    double min_i;
-    double max_i;
+    long double min_i;
+    long double max_i;
 
     int p_x;
-    double offset_x;
+    long double offset_x;
     int p_y;
-    double offset_y;
-    double zoom;
-    double x;
-    double y;
+    long double offset_y;
+    long double zoom;
+    long double x;
+    long double y;
 
-    double center_r;
-    double center_i;
+    long double center_r;
+    long double center_i;
     int is_pressed;
     char direction;
 } t_vars;
 
 int calc_mandelbrot(t_vars *vars);
-double scale(char axe, double x, t_vars *vars);
+long double scale(char axe, long double x, t_vars *vars);
 # endif
