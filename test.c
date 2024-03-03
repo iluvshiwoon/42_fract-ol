@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/03 20:11:31 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/03 20:13:13 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void recenter(double center_r,double center_i, t_vars * vars)
 {
     double new_center_r;
     double new_center_i;
-    new_center_i = center(vars->max_r, vars->min_r);
-    new_center_r = center(vars->max_i, vars->min_i);
+    new_center_i = center(vars->max_i, vars->min_i);
+    new_center_r = center(vars->max_r, vars->min_r);
 
     if (center_r <= new_center_r)
     {
