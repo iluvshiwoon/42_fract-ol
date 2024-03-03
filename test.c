@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/03 20:47:08 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/03 20:55:33 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,10 @@ int move(t_vars *vars) {
       vars->max_r = vars->max_r * vars->zoom;
       vars->min_i = vars->min_i * vars->zoom;
       vars->max_i = vars->max_i * vars->zoom;
+           vars->offset_x*=vars->zoom;
     } else if (vars->direction == '-') {
       vars->zoom = 2;
+           vars->offset_y*=vars->zoom;
       vars->min_r = vars->min_r * vars->zoom;
       vars->max_r = vars->max_r * vars->zoom;
       vars->min_i = vars->min_i * vars->zoom;
@@ -178,14 +180,14 @@ int calc_mandelbrot(t_vars *vars) {
   double zr_temp;
 
   vars->p_x = 0;
-  vars->x = scale('w', vars->center_r + vars->offset_x, vars);
+  vars->x = scale('w', vars->offset_x, vars);
 
   img.img = mlx_new_image(vars->mlx, VW, VH);
   img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
                                &img.endian);
   while (vars->p_x < VW) {
     vars->p_y = 0;
-    vars->y = scale('h', vars->center_i + vars->offset_y, vars);
+    vars->y = scale('h', vars->offset_y, vars);
     while (vars->p_y < VH) {
       i = 0;
       zr = 0.0;
