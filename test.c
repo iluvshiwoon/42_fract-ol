@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/03 20:02:40 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/03 20:11:31 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,34 @@ double center(double max, double min) {
     return ((max + min) / 2);
 }
 
+void recenter(double center_r,double center_i, t_vars * vars)
+{
+    double new_center_r;
+    double new_center_i;
+    new_center_i = center(vars->max_r, vars->min_r);
+    new_center_r = center(vars->max_i, vars->min_i);
+
+    if (center_r <= new_center_r)
+    {
+        vars->min_r -= new_center_r - center_r;
+        vars->max_r -= new_center_r - center_r;
+    }
+    else if (center_r > new_center_r)
+    {
+        vars->min_r += -new_center_r + center_r;
+        vars->max_r += -new_center_r + center_r;
+    }
+    if (center_i <= new_center_i)
+    {
+        vars->min_i -= new_center_i - center_i;
+        vars->max_i -= new_center_i - center_i;
+    }
+    else if (center_i > new_center_i)
+    {
+        vars->min_i += -new_center_i + center_i;
+        vars->max_i += -new_center_i + center_i;
+    }
+}
 int move(t_vars *vars) {
   double center_r;
   double center_i;
@@ -67,10 +95,10 @@ int move(t_vars *vars) {
       vars->offset_y += 4 * vars->zoom;
     else if (vars->direction == '+') {
       vars->zoom = 0.5;
-      vars->min_r = vars->min_r * vars->zoom + center_r * vars->zoom;
-      vars->max_r = vars->max_r * vars->zoom + center_r * vars->zoom;
-      vars->min_i = vars->min_i * vars->zoom + center_i * vars->zoom;
-      vars->max_i = vars->max_i * vars->zoom + center_i * vars->zoom;
+      vars->min_r = vars->min_r * vars->zoom;
+      vars->max_r = vars->max_r * vars->zoom;
+      vars->min_i = vars->min_i * vars->zoom;
+      vars->max_i = vars->max_i * vars->zoom;
     } else if (vars->direction == '-') {
       vars->zoom = 2;
       vars->min_r = vars->min_r * vars->zoom;
@@ -78,6 +106,7 @@ int move(t_vars *vars) {
       vars->min_i = vars->min_i * vars->zoom;
       vars->max_i = vars->max_i * vars->zoom;
     }
+        recenter(center_r,center_i,vars);
   center_r = center(vars->max_r, vars->min_r);
   center_i = center(vars->max_i, vars->min_i);
 
