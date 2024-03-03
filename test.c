@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/03 18:06:55 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/03 18:07:40 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int move(t_vars *vars) {
     double center_r;
     double center_i;
 
-    center_r = vars->min_r - vars->max_r;
-    center_i = vars->max_r - vars->min_r;
+    center_r = vars->min_r + vars->max_r;
+    center_i = vars->max_r + vars->min_r;
   if (vars->is_pressed) {
     if (vars->direction == 'D')
       vars->offset_x += 4 * vars->zoom;
