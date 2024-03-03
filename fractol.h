@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:03:53 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/03 17:57:38 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/03 20:43:59 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ typedef struct s_vars {
     double x;
     double y;
 
+    double center_r;
+    double center_i;
     int is_pressed;
     char direction;
 } t_vars;

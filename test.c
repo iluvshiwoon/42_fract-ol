@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/03 20:35:13 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/03 20:45:17 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ int move(t_vars *vars) {
   double center_r;
   double center_i;
 
-  center_r = center(vars->max_r, vars->min_r);
-  center_i = center(vars->max_i, vars->min_i);
+  vars->center_r = center(vars->max_r, vars->min_r);
+  vars->center_i = center(vars->max_i, vars->min_i);
   printf("R %f %f %f\n I %f %f %f\n", vars->min_r, center_r, vars->max_r,
          vars->min_i, center_i, vars->max_i);
 
@@ -107,7 +107,7 @@ int move(t_vars *vars) {
       vars->min_i = vars->min_i * vars->zoom;
       vars->max_i = vars->max_i * vars->zoom;
     }
-        recenter(center_r,center_i,vars);
+        // recenter(center_r,center_i,vars);
   center_r = center(vars->max_r, vars->min_r);
   center_i = center(vars->max_i, vars->min_i);
 
@@ -178,14 +178,14 @@ int calc_mandelbrot(t_vars *vars) {
   double zr_temp;
 
   vars->p_x = 0;
-  vars->x = scale('w', 0. + vars->offset_x, vars);
+  vars->x = scale('w', vars->center_r + vars->offset_x, vars);
 
   img.img = mlx_new_image(vars->mlx, VW, VH);
   img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
                                &img.endian);
   while (vars->p_x < VW) {
     vars->p_y = 0;
-    vars->y = scale('h', 0. + vars->offset_y, vars);
+    vars->y = scale('h', vars->center_i + vars->offset_y, vars);
     while (vars->p_y < VH) {
       i = 0;
       zr = 0.0;
@@ -224,6 +224,8 @@ int main(void) {
   vars->zoom = 1;
   vars->offset_x = 0;
   vars->offset_y = 0;
+    vars->center_i = 0;
+    vars->center_r = 0;
 
   printf("%f\n", scale('w', 0., vars));
   printf("%f\n", scale('w', 1., vars));
