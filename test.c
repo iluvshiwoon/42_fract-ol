@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/03 18:00:21 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/03 18:01:13 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ int move(t_vars *vars) {
       printf("%f\n", vars->zoom);
     } else if (vars->direction == '-') {
       vars->zoom += vars->zoom / 10;
-      vars->min_r *= vars->zoom;
-      vars->max_r *= vars->zoom;
-      vars->min_i *= vars->zoom;
-      vars->max_i *= vars->zoom;
+      vars->min_r /= vars->zoom;
+      vars->max_r /= vars->zoom;
+      vars->min_i /= vars->zoom;
+      vars->max_i /= vars->zoom;
 
       printf("%f\n", vars->zoom);
     }
