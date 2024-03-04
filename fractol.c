@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/04 22:52:47 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/04 22:55:08 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -33,7 +33,7 @@ int main(void) {
                              "Fract-ol");
   render(vars);
   mlx_hook(vars->win, KeyPress, KeyPressMask, &key_events, vars);
-  mlx_hook(vars->win, ButtonPress, Button5Mask | Button4Mask, &mouse_events,
+  mlx_hook(vars->win, ButtonPress, ButtonPressMask, &mouse_events,
            vars);
   mlx_hook(vars->win, DestroyNotify, 0, &close_win, vars);
   mlx_loop(vars->mlx);
