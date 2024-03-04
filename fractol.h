@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:03:53 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/04 19:35:24 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/04 22:41:55 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int calc_mandelbrot(t_vars *vars);
 
 // Events
 int key_events(int keycode, t_vars *vars);
+int mouse_events(int keycode, t_vars * vars);
 
 // Camera
 void move(t_vars *vars);

@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/04 19:58:54 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/04 22:50:54 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,11 @@ int key_events(int keycode, t_vars *vars) {
   else if (keycode == KEY_MINUS)
     set_key_pressed(vars, '-');
   return 1;
+}
+
+#include <stdio.h>
+int mouse_events(int keycode, t_vars * vars)
+{
+    printf("%d\n", keycode); 
+    return 1;
 }
