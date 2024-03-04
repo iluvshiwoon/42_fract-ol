@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/04 17:57:10 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/04 18:55:58 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ void set_key_pressed(t_vars *vars, char direction) {
 
 int key_events(int keycode, t_vars *vars) {
   if (keycode == KEY_ESC) {
-    mlx_destroy_window(vars->mlx, vars->win);
-    exit(0);
+        close_win(vars);
   } else if (keycode == KEY_D)
     set_key_pressed(vars, 'D');
   else if (keycode == KEY_A)
