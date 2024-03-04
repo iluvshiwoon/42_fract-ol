@@ -6,28 +6,13 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/04 17:30:00 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/04 17:57:10 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int key_released(int keycode, t_vars *vars) {
-  if (keycode == KEY_D)
-    vars->is_pressed = 0;
-  else if (keycode == KEY_A)
-    vars->is_pressed = 0;
-  else if (keycode == KEY_W)
-    vars->is_pressed = 0;
-  else if (keycode == KEY_S)
-    vars->is_pressed = 0;
-  else
-    return 0;
-  return 1;
-}
-
 void set_key_pressed(t_vars *vars, char direction) {
-  vars->is_pressed = 1;
   vars->direction = direction;
   move(vars);
   calc_mandelbrot(vars);
@@ -49,7 +34,5 @@ int key_events(int keycode, t_vars *vars) {
     set_key_pressed(vars, '+');
   else if (keycode == KEY_MINUS)
     set_key_pressed(vars, '-');
-  else
-    return (0);
   return 1;
 }
