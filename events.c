@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/04 23:10:42 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/04 23:24:22 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,17 @@ int key_events(int keycode, t_vars *vars) {
 
 #include <stdio.h>
 int mouse_events(int keycode, t_vars *vars) {
-    int * x;
-    int * y;
-    
-    x = malloc(sizeof(*x));
-    y = malloc(sizeof(*y));
+  int *x;
+  int *y;
+
+  x = malloc(sizeof(*x));
+  y = malloc(sizeof(*y));
   if (keycode == Button4 || keycode == Button5) {
     printf("%d\n", keycode);
-    mlx_mouse_get_pos(vars->mlx, vars->win, x,
-                      y);
-        vars->offset_x = *x;
-        vars->offset_y = *y;
-        render(vars);
+    mlx_mouse_get_pos(vars->mlx, vars->win, x, y);
+    vars->offset_x = *x;
+    vars->offset_y = *y;
+    render(vars);
   }
-  return (free(x),free(y),1);
+  return (free(x), free(y), 1);
 }
