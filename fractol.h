@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:03:53 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/04 17:23:40 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/04 17:25:44 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ typedef struct s_vars {
 } t_vars;
 
 int calc_mandelbrot(t_vars *vars);
+
+// Events
+int key_events(int keycode, t_vars *vars);
 
 // Camera
 int move(t_vars *vars);

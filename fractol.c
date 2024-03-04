@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/04 17:09:35 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/04 17:25:45 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -26,14 +26,6 @@ int main(void) {
   vars->offset_y = 0;
     vars->center_i = 0;
     vars->center_r = 0;
-
-  printf("%f\n", scale('w', 0., vars));
-  printf("%f\n", scale('w', 1., vars));
-  printf("%f\n", scale('w', vars->view_width, vars));
-
-  printf("%f\n", scale('h', 0., vars));
-  printf("%f\n", scale('h', 1., vars));
-  printf("%f\n", scale('h', vars->view_height, vars));
 
   vars->mlx = mlx_init();
   mlx_do_key_autorepeaton(vars->mlx);
