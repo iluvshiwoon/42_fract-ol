@@ -6,10 +6,11 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/04 22:50:54 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/04 23:00:47 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "X11/X.h"
 #include "fractol.h"
 
 void set_key_pressed(t_vars *vars, char direction) {
@@ -39,6 +40,7 @@ int key_events(int keycode, t_vars *vars) {
 #include <stdio.h>
 int mouse_events(int keycode, t_vars * vars)
 {
-    printf("%d\n", keycode); 
+    if (keycode == Button4 || keycode == Button5)
+        printf("%d\n", keycode); 
     return 1;
 }
