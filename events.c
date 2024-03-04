@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/04 17:22:02 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/04 17:30:00 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,32 +24,6 @@ int key_released(int keycode, t_vars *vars) {
   else
     return 0;
   return 1;
-}
-
-double center(double max, double min) {
-  if (max >= 0 && min <= 0)
-    return (max + min);
-  else
-    return ((max + min) / 2);
-}
-
-void recenter(double center_r, double center_i, t_vars *vars) {
-  double new_center_r;
-  double new_center_i;
-
-  new_center_r = center(vars->max_r, vars->min_r);
-  new_center_i = center(vars->max_i, vars->min_i);
-
-  if (center_r <= new_center_r) {
-    vars->offset_x -= (new_center_r - center_r) / scale('w', 1., vars);
-  } else if (center_r > new_center_r) {
-    vars->offset_x += (-new_center_r + center_r) / scale('w', 1., vars);
-  }
-  if (center_i <= new_center_i) {
-    vars->offset_y -= (new_center_i - center_i) / scale('w', 1., vars);
-  } else if (center_i > new_center_i) {
-    vars->offset_y += (-new_center_i + center_i) / scale('w', 1., vars);
-  }
 }
 
 void set_key_pressed(t_vars *vars, char direction) {

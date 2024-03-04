@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:03:53 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/04 17:25:44 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/04 17:32:43 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,11 @@ typedef struct s_vars {
     double offset_x;
     int p_y;
     double offset_y;
-    double zoom;
     double x;
     double y;
 
-    double center_r;
-    double center_i;
     int is_pressed;
+    double zoom;
     char direction;
 } t_vars;
 
@@ -66,7 +64,6 @@ int move(t_vars *vars);
 // Utils
 int close_win(t_vars *vars);
 double scale(char axe, double x, t_vars *vars);
-double center(double max, double min);
 
 // Mlx Utils
 int create_trgb(int t, int r, int g, int b);
