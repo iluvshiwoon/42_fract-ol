@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/04 23:43:25 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/04 23:52:30 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int mouse_events(int keycode, t_vars *vars) {
   y = malloc(sizeof(*y));
   if (keycode == Button4 || keycode == Button5) {
     printf("%d\n", keycode);
-        printf("%d\n", vars->offset_x);
+    printf("%d\n", vars->offset_x);
     // mlx_mouse_get_pos(vars->mlx, vars->win, x, y);
     // vars->offset_x = *x;
     // vars->offset_y = *y;
