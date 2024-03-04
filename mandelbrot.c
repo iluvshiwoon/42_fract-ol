@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:14:42 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/04 19:05:10 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/04 19:11:08 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -44,11 +44,12 @@ int calc_mandelbrot(t_vars *vars) {
                                    (20 * i + 30) % 255, (30 * i + 30) % 255));
       ++(vars->p_y);
       vars->y += scale('w', 1., vars) - scale('w', 0., vars);
+      return 0;
     }
     ++(vars->p_x);
     vars->x += scale('w', 1., vars) - scale('w', 0., vars);
   }
   mlx_put_image_to_window(vars->mlx, vars->win, img.img, 0, 0);
-    mlx_destroy_image(vars->mlx, img.img);
+  mlx_destroy_image(vars->mlx, img.img);
   return 1;
 }
