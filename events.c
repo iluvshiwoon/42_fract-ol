@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/05 00:29:24 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/05 00:55:46 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void set_key_pressed(t_vars *vars, char direction) {
 
 #include <stdio.h>
 int key_events(int keycode, t_vars *vars) {
-    printf("%f\n", vars->offset_x);
   if (keycode == KEY_ESC) {
     close_win(vars);
   } else if (keycode == KEY_D || keycode == KEY_RIGHT)
@@ -39,15 +38,10 @@ int key_events(int keycode, t_vars *vars) {
   return 1;
 }
 
-int mouse_events(int keycode, t_vars *vars) {
-  int *x;
-  int *y;
-
-  x = malloc(sizeof(*x));
-  y = malloc(sizeof(*y));
+int mouse_events(int keycode,int x, int y, t_vars *vars) {
   if (keycode == Button4 || keycode == Button5) {
     printf("%d\n", keycode);
-    // printf("%d\n", vars->offset_x);
+    printf("%f\n", vars->offset_x);
     // mlx_mouse_get_pos(vars->mlx, vars->win, x, y);
     // vars->offset_x = *x;
     // vars->offset_y = *y;
