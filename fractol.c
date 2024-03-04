@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/04 17:35:39 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/04 17:37:25 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -31,6 +31,7 @@ static void init(t_vars *vars) {
 int main(void) {
   t_vars *vars;
 
+    init(vars);
   calc_mandelbrot(vars);
   mlx_hook(vars->win, KeyPress, KeyPressMask, &key_events, vars);
   mlx_hook(vars->win, DestroyNotify, 0, &close_win, vars);
