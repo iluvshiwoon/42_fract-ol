@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:03:53 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/04 19:27:12 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/04 19:35:24 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,12 @@ typedef struct s_vars {
 
     double zoom;
     char direction;
+
+    char type;
 } t_vars;
 
 // Render
-void render(t_vars *vars, char type);
+void render(t_vars *vars);
 int calc_mandelbrot(t_vars *vars);
 
 // Events

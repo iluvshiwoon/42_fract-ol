@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/04 19:27:56 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/04 19:31:44 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 void set_key_pressed(t_vars *vars, char direction) {
   vars->direction = direction;
   move(vars);
-    render(vars, 'M');
+  render(vars);
 }
 
 int key_events(int keycode, t_vars *vars) {
   if (keycode == KEY_ESC) {
-        close_win(vars);
+    close_win(vars);
   } else if (keycode == KEY_D)
     set_key_pressed(vars, 'D');
   else if (keycode == KEY_A)

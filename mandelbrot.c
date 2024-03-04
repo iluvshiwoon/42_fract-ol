@@ -6,12 +6,19 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:14:42 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/04 19:27:19 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/04 19:34:43 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
 
-void render(t_vars *vars, char type) {
+static int calc_pixel_color_multiplier(t_vars * vars)
+{
+    if (vars->type == 'M')
+        return (calc_mandelbrot(vars));
+    return 0;
+}
+
+void render(t_vars *vars) {
   t_data img;
   int i;
 
@@ -25,7 +32,7 @@ void render(t_vars *vars, char type) {
     vars->p_y = 0;
     vars->y = scale('h', vars->offset_y, vars);
     while (vars->p_y < VH) {
-      i = calc_mandelbrot(vars);
+      i = calc_pixel_color_multiplier(vars);
       my_mlx_put_pixel(&img, vars->p_x, vars->p_y,
                        create_trgb((5 * i + 30) % 255, (10 * i + 30) % 255,
                                    (20 * i + 30) % 255, (30 * i + 30) % 255));
