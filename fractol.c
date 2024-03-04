@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/04 17:38:26 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/04 17:39:21 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -22,16 +22,16 @@ static void init(t_vars *vars) {
   vars->offset_x = 0;
   vars->offset_y = 0;
   vars->zoom = 2;
-  vars->mlx = mlx_init();
-  mlx_do_key_autorepeaton(vars->mlx);
-  vars->win = mlx_new_window(vars->mlx, vars->view_width, vars->view_height,
-                             "Fract-ol");
 }
 
 int main(void) {
   t_vars *vars;
 
-    init(vars);
+  init(vars);
+  vars->mlx = mlx_init();
+  mlx_do_key_autorepeaton(vars->mlx);
+  vars->win = mlx_new_window(vars->mlx, vars->view_width, vars->view_height,
+                             "Fract-ol");
   calc_mandelbrot(vars);
   mlx_hook(vars->win, KeyPress, KeyPressMask, &key_events, vars);
   mlx_hook(vars->win, DestroyNotify, 0, &close_win, vars);
