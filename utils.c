@@ -6,16 +6,16 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:19:58 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/04 19:03:48 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/04 19:04:17 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
 
 int close_win(t_vars *vars) {
   mlx_destroy_window(vars->mlx, vars->win);
-  mlx_destroy_display(vars->mlx);
+  // mlx_destroy_display(vars->mlx);
   free(vars->mlx);
-  // free(vars);
+  free(vars);
   exit(0);
 }
 
