@@ -6,15 +6,15 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/04 17:39:21 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/04 17:42:12 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
 
 static void init(t_vars *vars) {
   vars = malloc(sizeof(*vars));
-  vars->view_width = VW;
-  vars->view_height = VH;
+  vars->view_width = 1920;
+  vars->view_height = 1080;
   vars->min_r = -4.0;
   vars->max_r = 4.0;
   vars->min_i = -2.23;
