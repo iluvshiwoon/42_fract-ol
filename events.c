@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/05 00:24:45 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/05 00:29:24 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void set_key_pressed(t_vars *vars, char direction) {
 
 #include <stdio.h>
 int key_events(int keycode, t_vars *vars) {
-    printf("%d\n", vars->offset_x);
+    printf("%f\n", vars->offset_x);
   if (keycode == KEY_ESC) {
     close_win(vars);
   } else if (keycode == KEY_D || keycode == KEY_RIGHT)
