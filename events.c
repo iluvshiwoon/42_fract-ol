@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/05 00:55:46 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/05 00:56:34 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ int mouse_events(int keycode,int x, int y, t_vars *vars) {
     // vars->offset_y = *y;
     // render(vars);
   }
-  return (free(x), free(y), 1);
+  return (1);
 }
