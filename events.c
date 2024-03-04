@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/04 18:55:58 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/04 19:27:56 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void set_key_pressed(t_vars *vars, char direction) {
   vars->direction = direction;
   move(vars);
-  calc_mandelbrot(vars);
+    render(vars, 'M');
 }
 
 int key_events(int keycode, t_vars *vars) {
