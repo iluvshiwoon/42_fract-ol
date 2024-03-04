@@ -6,15 +6,18 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/04 17:42:12 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/04 17:42:48 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
 
-static void init(t_vars *vars) {
+
+int main(void) {
+  t_vars *vars;
+
   vars = malloc(sizeof(*vars));
-  vars->view_width = 1920;
-  vars->view_height = 1080;
+  vars->view_width = VW;
+  vars->view_height = VH;
   vars->min_r = -4.0;
   vars->max_r = 4.0;
   vars->min_i = -2.23;
@@ -22,12 +25,7 @@ static void init(t_vars *vars) {
   vars->offset_x = 0;
   vars->offset_y = 0;
   vars->zoom = 2;
-}
 
-int main(void) {
-  t_vars *vars;
-
-  init(vars);
   vars->mlx = mlx_init();
   mlx_do_key_autorepeaton(vars->mlx);
   vars->win = mlx_new_window(vars->mlx, vars->view_width, vars->view_height,
