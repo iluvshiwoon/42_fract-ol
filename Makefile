@@ -10,10 +10,10 @@ NAME = fractol
 all: $(NAME)
 
 $(NAME): $(C_FILES) | build
-	$(CC) -03 $^ -o $(NAME) -L ./42_MyLibC -lft -L ./minilibx-linux -lmlx -lXext -lX11 -lm -lz
+	$(CC) -O3 $^ -o $(NAME) -L ./42_MyLibC -lft -L ./minilibx-linux -lmlx -lXext -lX11 -lm -lz
 
 %.o: %.c 
-	$(CC)  -03 -c $< -o $@
+	$(CC)  -O3 -c $< -o $@
 
 build:
 	mkdir -p build
