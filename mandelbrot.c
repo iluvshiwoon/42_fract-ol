@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:14:42 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/05 20:19:45 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/05 20:25:23 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -21,7 +21,7 @@ static double calc_pixel_color_multiplier(t_vars *vars) {
 t_color *get_color(double i, t_gradient gradient, t_color *color) {
   double i_scaled;
 
-  i_scaled = (double)i / ((double)PASS / 2);
+  i_scaled = (double)i / PASS;
   // i_scaled = 1 - i_scaled;
   color->transparency =
       gradient.color1.transparency +
