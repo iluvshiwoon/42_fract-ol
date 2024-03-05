@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:14:42 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/05 20:32:30 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/05 23:26:34 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -54,10 +54,10 @@ void render(t_vars *vars) {
       get_color(i, vars->gradient, &color);
       my_mlx_put_pixel(
           &img, vars->p_x, vars->p_y,
-          // create_trgb(color.transparency * (i < PASS), color.red * (i < PASS),
-          //             color.green * (i < PASS), color.blue * (i < PASS)));
-      create_trgb((5 * (int)i + 30) % 255, (10 * (int)i + 30) % 255,
-                  (20 * (int)i + 30) % 255, (30 * (int)i + 30) % 255));
+          create_trgb(color.transparency * (i < PASS), color.red * (i < PASS),
+                      color.green * (i < PASS), color.blue * (i < PASS)));
+      // create_trgb((5 * i + 30) % 255, (10 * i + 30) % 255,
+      //             (20 * i + 30) % 255, (30 * i + 30) % 255));
       ++(vars->p_y);
       vars->y += scale('w', 1., vars) - scale('w', 0., vars);
     }
