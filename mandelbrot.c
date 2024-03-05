@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:14:42 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/05 19:27:57 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/05 19:30:16 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -24,6 +24,7 @@ t_color get_color(int i, t_gradient gradient)
     double i_scaled;
     i_scaled = ((1 - 0) * ((double)i - 0)) / (PASS - 0) + 0;
     printf("%f\n",i_scaled);
+    sleep(1);
     t_color color;
     return color; 
 }
