@@ -6,23 +6,23 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:14:42 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/05 19:50:56 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/05 20:06:28 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
 
-static int calc_pixel_color_multiplier(t_vars *vars) {
+static double calc_pixel_color_multiplier(t_vars *vars) {
   if (vars->type == 'M')
     return (calc_mandelbrot(vars));
   return 0;
 }
 
 #include <stdio.h>
-t_color *get_color(int i, t_gradient gradient, t_color *color) {
+t_color *get_color(double i, t_gradient gradient, t_color *color) {
   double i_scaled;
 
-  i_scaled = ((1 - 0) * ((double)i - 0)) / (PASS - 0) + 0;
-    i_scaled = 1 - i_scaled;
+  i_scaled = (double)i / PASS;
+  // i_scaled = 1 - i_scaled;
   color->transparency =
       gradient.color1.transparency +
       i_scaled * (gradient.color2.transparency - gradient.color1.transparency);
@@ -38,7 +38,7 @@ t_color *get_color(int i, t_gradient gradient, t_color *color) {
 void render(t_vars *vars) {
   t_color color;
   t_data img;
-  int i;
+  double i;
 
   vars->p_x = 0;
   vars->x = scale('w', vars->offset_x, vars);
@@ -68,8 +68,10 @@ void render(t_vars *vars) {
   mlx_destroy_image(vars->mlx, img.img);
 }
 
-int calc_mandelbrot(t_vars *vars) {
+double calc_mandelbrot(t_vars *vars) {
   int i;
+  double mod;
+  double smooth;
   double zr;
   double zi;
   double zr_temp;
@@ -85,5 +87,7 @@ int calc_mandelbrot(t_vars *vars) {
       break;
     ++i;
   }
-  return i;
+  mod = zr * zr + zi * zi;
+  smooth = i + 1 - log(log(sqrt(mod))) / log(2);
+  return smooth;
 }
