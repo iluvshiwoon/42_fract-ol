@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/05 01:24:46 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/05 01:32:37 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,23 @@ int key_events(int keycode, t_vars *vars) {
   return 1;
 }
 
+int mouse_moved(t_vars * vars, int x, int y)
+{
+    if (vars->mouse_x == x && vars->mouse_y == y)
+        return (0);
+    return (1);
+}
+
 int mouse_events(int keycode, int x, int y, t_vars *vars) {
-  if (keycode == Button4 | keycode == Button5) {
+  if (keycode == Button4 | keycode == Button5 && mouse_moved(vars,x,y)) {
+        vars->mouse_x = x;
+        vars->mouse_y = y;
         vars->offset_x += (double)x - VW/2; 
         vars->offset_y += (double)y - VH/2; 
-        if (keycode == Button4)
+  }
+  if (keycode == Button4)
             set_key_pressed(vars,'+');
         if (keycode == Button5)
             set_key_pressed(vars,'-');
-
-  }
   return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:03:53 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/05 00:55:25 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/05 01:29:46 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef struct s_vars {
   char direction;
 
   char type;
+    int mouse_x;
+    int mouse_y;
 } t_vars;
 
 // Render
