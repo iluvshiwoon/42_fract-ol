@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:14:42 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/06 00:06:09 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/06 00:08:10 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -25,10 +25,10 @@ t_color *get_color(double i, t_gradient gradient, t_color *color) {
     gradient.color1.blue = (9*(int)i)%255;
     gradient.color1.transparency = (7*(int)i)%255;
 
-    gradient.color1.red = (8*(int)i)%255;
-    gradient.color1.green = ((int)i)%255;
-    gradient.color1.blue = (5*(int)i)%255;
-    gradient.color1.transparency = (6*(int)i)%255;
+    gradient.color2.red = (8*(int)i)%255;
+    gradient.color2.green = ((int)i)%255;
+    gradient.color2.blue = (5*(int)i)%255;
+    gradient.color2.transparency = (6*(int)i)%255;
 
   i_scaled = (double)i / PASS;
   // i_scaled = 1 - i_scaled;
