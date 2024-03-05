@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/05 01:32:55 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/05 19:41:41 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -28,6 +28,15 @@ int main(void) {
   vars->type = 'M';
   vars->mouse_x = 0;
   vars->mouse_y = 0;
+  vars->gradient.color1.red = 245;
+  vars->gradient.color1.green = 39;
+  vars->gradient.color1.blue = 39;
+  vars->gradient.color1.transparency = 204;
+
+  vars->gradient.color2.red = 39;
+  vars->gradient.color2.green =157;
+  vars->gradient.color2.blue = 245;
+  vars->gradient.color2.transparency = 204;
 
   vars->mlx = mlx_init();
   mlx_do_key_autorepeaton(vars->mlx);
