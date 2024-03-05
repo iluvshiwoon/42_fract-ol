@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/06 00:20:18 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/06 00:22:41 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -37,6 +37,7 @@ int main(void) {
   // vars->gradient.color2.green =249;
   // vars->gradient.color2.blue = 145;
   // vars->gradient.color2.transparency = 247;
+vars->gradient.color = malloc(sizeof(*(vars->gradient.color)) * PASS);
   build_palette(vars);
 
   vars->mlx = mlx_init();
