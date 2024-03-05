@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:14:42 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/06 00:08:10 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/06 00:19:38 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -17,30 +17,42 @@ static double calc_pixel_color_multiplier(t_vars *vars) {
   return 0;
 }
 
+void build_palette(t_vars * vars)
+{
+    int i;
+
+    i = 0;
+    while (i < PASS)
+    {
+        vars->gradient.color[i].transparency =(6*(int)i)%255; 
+        vars->gradient.color[i].red = (8*(int)i)%255;
+        vars->gradient.color[i].green = ((int)i)%255;
+        vars->gradient.color[i].blue = (5*(int)i)%255;
+        ++i;
+    }
+}
+
 #include <stdio.h>
 t_color *get_color(double i, t_gradient gradient, t_color *color) {
   double i_scaled;
-    gradient.color1.red = (3*(int)i)%255;
-    gradient.color1.green = (4*(int)i)%255;
-    gradient.color1.blue = (9*(int)i)%255;
-    gradient.color1.transparency = (7*(int)i)%255;
+    int i_floor;
+    // gradient.color1.red = (3*(int)i)%255;
+    // gradient.color1.green = (4*(int)i)%255;
+    // gradient.color1.blue = (9*(int)i)%255;
+    // gradient.color1.transparency = (7*(int)i)%255;
 
-    gradient.color2.red = (8*(int)i)%255;
-    gradient.color2.green = ((int)i)%255;
-    gradient.color2.blue = (5*(int)i)%255;
-    gradient.color2.transparency = (6*(int)i)%255;
-
+    i_floor = floor(i);
   i_scaled = (double)i / PASS;
   // i_scaled = 1 - i_scaled;
   color->transparency =
-      gradient.color1.transparency +
-      i_scaled * (gradient.color2.transparency - gradient.color1.transparency);
-  color->red = gradient.color1.red +
-               i_scaled * (gradient.color2.red - gradient.color1.red);
-  color->green = gradient.color1.green +
-                 i_scaled * (gradient.color2.green - gradient.color1.green);
-  color->blue = gradient.color1.blue +
-                i_scaled * (gradient.color2.blue - gradient.color1.blue);
+      gradient.color[i_floor].transparency +
+      i_scaled * (gradient.color[i_floor + 1].transparency - gradient.color[i_floor].transparency);
+  color->red = gradient.color[i_floor].red +
+               i_scaled * (gradient.color[i_floor + 1].red - gradient.color[i_floor].red);
+  color->green = gradient.color[i_floor].green +
+                 i_scaled * (gradient.color[i_floor + 1].green - gradient.color[i_floor].green);
+  color->blue = gradient.color[i_floor].blue +
+                i_scaled * (gradient.color[i_floor + 1].blue - gradient.color[i_floor].blue);
   return color;
 }
 

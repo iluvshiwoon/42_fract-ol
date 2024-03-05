@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:03:53 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/05 23:31:46 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/06 00:19:56 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,14 @@ typedef struct s_data {
 } t_data;
 
 typedef struct s_color {
-    int transparency;
-    int red;
-    int green;
-    int blue;
+  int transparency;
+  int red;
+  int green;
+  int blue;
 } t_color;
 
 typedef struct s_gradient {
-  t_color color1;
-  t_color color2;
+  t_color color[PASS];
 } t_gradient;
 
 typedef struct s_vars {
@@ -84,6 +83,7 @@ void move(t_vars *vars);
 // Utils
 int close_win(t_vars *vars);
 double scale(char axe, double x, t_vars *vars);
+void build_palette(t_vars * vars);
 
 // Mlx Utils
 int create_trgb(int t, int r, int g, int b);
