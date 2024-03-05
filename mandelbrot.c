@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:14:42 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/05 23:54:26 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/05 23:55:58 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -94,7 +94,7 @@ double calc_mandelbrot(t_vars *vars) {
     ++i;
   }
   log_zn = log(zr * zr + zi * zi) / 2;
-  smooth = log(log_zn / log(2)) / log(2);
+  smooth = log(log_zn / log(4)) / log(2);
   smooth = i + 1 - smooth;
   return smooth;
 }
