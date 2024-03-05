@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:14:42 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/05 23:55:58 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/06 00:06:09 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -20,6 +20,15 @@ static double calc_pixel_color_multiplier(t_vars *vars) {
 #include <stdio.h>
 t_color *get_color(double i, t_gradient gradient, t_color *color) {
   double i_scaled;
+    gradient.color1.red = (3*(int)i)%255;
+    gradient.color1.green = (4*(int)i)%255;
+    gradient.color1.blue = (9*(int)i)%255;
+    gradient.color1.transparency = (7*(int)i)%255;
+
+    gradient.color1.red = (8*(int)i)%255;
+    gradient.color1.green = ((int)i)%255;
+    gradient.color1.blue = (5*(int)i)%255;
+    gradient.color1.transparency = (6*(int)i)%255;
 
   i_scaled = (double)i / PASS;
   // i_scaled = 1 - i_scaled;
@@ -94,7 +103,7 @@ double calc_mandelbrot(t_vars *vars) {
     ++i;
   }
   log_zn = log(zr * zr + zi * zi) / 2;
-  smooth = log(log_zn / log(4)) / log(2);
+  smooth = log(log_zn / log(2)) / log(2);
   smooth = i + 1 - smooth;
   return smooth;
 }
