@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:03:53 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/05 01:29:46 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/05 19:21:44 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,18 @@ typedef struct s_data {
   int line_length;
   int endian;
 } t_data;
+
+typedef struct s_color {
+    int transparency;
+    int red;
+    int green;
+    int blue;
+} t_color;
+
+typedef struct s_gradient {
+  t_color color1;
+  t_color color2;
+} t_gradient;
 
 typedef struct s_vars {
   void *mlx;
@@ -52,8 +64,10 @@ typedef struct s_vars {
   char direction;
 
   char type;
-    int mouse_x;
-    int mouse_y;
+  int mouse_x;
+  int mouse_y;
+
+  t_gradient gradient;
 } t_vars;
 
 // Render

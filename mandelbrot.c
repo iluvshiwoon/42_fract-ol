@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:14:42 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/04 19:34:43 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/05 19:27:57 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -16,6 +16,16 @@ static int calc_pixel_color_multiplier(t_vars * vars)
     if (vars->type == 'M')
         return (calc_mandelbrot(vars));
     return 0;
+}
+
+#include <stdio.h>
+t_color get_color(int i, t_gradient gradient)
+{
+    double i_scaled;
+    i_scaled = ((1 - 0) * ((double)i - 0)) / (PASS - 0) + 0;
+    printf("%f\n",i_scaled);
+    t_color color;
+    return color; 
 }
 
 void render(t_vars *vars) {
@@ -33,6 +43,7 @@ void render(t_vars *vars) {
     vars->y = scale('h', vars->offset_y, vars);
     while (vars->p_y < VH) {
       i = calc_pixel_color_multiplier(vars);
+            get_color(i, (t_gradient){});
       my_mlx_put_pixel(&img, vars->p_x, vars->p_y,
                        create_trgb((5 * i + 30) % 255, (10 * i + 30) % 255,
                                    (20 * i + 30) % 255, (30 * i + 30) % 255));
