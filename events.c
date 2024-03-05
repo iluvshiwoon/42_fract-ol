@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:36:49 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/05 01:13:03 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/05 01:13:48 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int mouse_events(int keycode, int x, int y, t_vars *vars) {
   if (keycode == Button4 || keycode == Button5) {
         vars->offset_x = (double)x; 
         vars->offset_y = (double)y; 
+        render(vars);
   }
   return (1);
 }
