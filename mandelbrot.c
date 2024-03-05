@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:14:42 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/05 23:45:54 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/05 23:54:26 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -76,7 +76,7 @@ double max(double a, double b) {
 
 double calc_mandelbrot(t_vars *vars) {
   int i;
-  double mod;
+  double log_zn;
   double smooth;
   double zr;
   double zi;
@@ -93,9 +93,8 @@ double calc_mandelbrot(t_vars *vars) {
       break;
     ++i;
   }
-  mod = zr * zr + zi * zi;
-  // smooth = i + log2(max(1.,log2(sqrt(mod))));
-    smooth = i - log(log(mod/2.0f)/log(2))/log(2);
-  // smooth = i + 1 - log(log(sqrt(mod))) / log(2);
+  log_zn = log(zr * zr + zi * zi) / 2;
+  smooth = log(log_zn / log(2)) / log(2);
+  smooth = i + 1 - smooth;
   return smooth;
 }
