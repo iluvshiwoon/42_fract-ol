@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:14:42 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/05 19:48:35 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/05 19:50:56 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -22,6 +22,7 @@ t_color *get_color(int i, t_gradient gradient, t_color *color) {
   double i_scaled;
 
   i_scaled = ((1 - 0) * ((double)i - 0)) / (PASS - 0) + 0;
+    i_scaled = 1 - i_scaled;
   color->transparency =
       gradient.color1.transparency +
       i_scaled * (gradient.color2.transparency - gradient.color1.transparency);
