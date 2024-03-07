@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:14:42 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/07 11:49:33 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/07 12:00:24 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -100,12 +100,6 @@ void render(t_vars *vars) {
   mlx_destroy_image(vars->mlx, img.img);
 }
 
-double max(double a, double b) {
-  if (a > b)
-    return a;
-  return b;
-}
-
 double calc_mandelbrot(t_vars *vars) {
   int i;
   double log_zn;
@@ -125,8 +119,9 @@ double calc_mandelbrot(t_vars *vars) {
       break;
     ++i;
   }
-  log_zn = log(zr * zr + zi * zi) / 2;
-  smooth = log(log_zn / log(2)) / log(2);
-  smooth = i + 1 - smooth;
-  return smooth;
+  // log_zn = log(zr * zr + zi * zi) / 2;
+  // smooth = log(log_zn / log(2)) / log(2);
+  // smooth = i + 1 - smooth;
+  // return smooth;
+  return i;
 }
