@@ -6,16 +6,13 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/07 15:33:12 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/07 15:36:20 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
 #include "X11/X.h"
 
-int main(void) {
-  t_vars *vars;
-
-  vars = malloc(sizeof(*vars));
+static void init(t_vars *vars) {
   vars->view_width = VW;
   vars->view_height = VH;
   vars->min_r = -4.0;
@@ -26,19 +23,17 @@ int main(void) {
   vars->offset_y = 0;
   vars->zoom = 2;
   vars->type = 'J';
-    vars->cr = 0.285;
-    vars->ci = 0.01;
+  vars->cr = 0.285;
+  vars->ci = 0.01;
   vars->mouse_x = 0;
   vars->mouse_y = 0;
-  // vars->gradient.color1.red = 14;
-  // vars->gradient.color1.green = 13;
-  // vars->gradient.color1.blue = 148;
-  // vars->gradient.color1.transparency = 247;
-  //
-  // vars->gradient.color2.red = 255;
-  // vars->gradient.color2.green =249;
-  // vars->gradient.color2.blue = 145;
-  // vars->gradient.color2.transparency = 247;
+}
+
+int main(void) {
+  t_vars *vars;
+
+  vars = malloc(sizeof(*vars));
+  init(vars);
   vars->gradient = malloc(sizeof(*(vars->gradient)) * PASS);
   build_palette(vars);
 
@@ -49,8 +44,6 @@ int main(void) {
   render(vars);
   mlx_hook(vars->win, KeyPress, KeyPressMask, &key_events, vars);
   mlx_mouse_hook(vars->win, &mouse_events, vars);
-  // mlx_hook(vars->win, ButtonPress, ButtonPressMask, &mouse_events,
-  //          vars);
   mlx_hook(vars->win, DestroyNotify, 0, &close_win, vars);
   mlx_loop(vars->mlx);
 }
