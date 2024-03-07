@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/07 15:36:20 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/07 15:48:04 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -22,18 +22,35 @@ static void init(t_vars *vars) {
   vars->offset_x = 0;
   vars->offset_y = 0;
   vars->zoom = 2;
-  vars->type = 'J';
   vars->cr = 0.285;
   vars->ci = 0.01;
   vars->mouse_x = 0;
   vars->mouse_y = 0;
 }
 
-int main(void) {
+static void parse_input(t_vars *vars, int argc, char **argv) {
+  int status;
+  if (argc > 1) {
+    if (argv[1][0] == 'M')
+      vars->type = 'M';
+    else if (argv[1][0] == 'B')
+      vars->type = 'B';
+    else if (argv[1][0] == 'J')
+      vars->type = 'J';
+  } else {
+    ft_printf("Usage: ./fractol <set> <options>\nSets: 'M' Mandelbrot\n'B' "
+              "Burning Ship\n'J' Julia\nFor Julia's sets you can specify a "
+              "complex in the range (0, 1 + i)\n");
+    return (free(vars), exit(0));
+  }
+}
+
+int main(int argc, char **argv) {
   t_vars *vars;
 
   vars = malloc(sizeof(*vars));
   init(vars);
+  parse_input(vars, argc, argv);
   vars->gradient = malloc(sizeof(*(vars->gradient)) * PASS);
   build_palette(vars);
 
