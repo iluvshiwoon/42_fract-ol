@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:14:42 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/07 12:00:24 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/07 12:05:46 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -30,22 +30,20 @@ void build_palette(t_vars *vars) {
   }
 }
 
-#include <stdio.h>
 t_color *get_color(double i, t_color *gradient, t_color *color) {
   double i_scaled;
   int i_floor;
 
   i_floor = floor(i);
   if (i_floor == PASS)
-    i_floor -= 3;
-  else if (i_floor == PASS - 1)
     i_floor -= 2;
-  else if (i_floor == PASS - 2)
+  else if (i_floor == PASS - 1)
     i_floor -= 1;
-  else if (i_floor < 0)
-    i_floor = 0;
+  // else if (i_floor == PASS - 2)
+  //   i_floor -= 1;
+  // else if (i_floor < 0)
+  //   i_floor = 0;
   i_scaled = (double)i / PASS;
-
   color->transparency = gradient[i_floor].transparency +
                         i_scaled * (gradient[i_floor + 1].transparency -
                                     gradient[i_floor].transparency);
@@ -102,8 +100,8 @@ void render(t_vars *vars) {
 
 double calc_mandelbrot(t_vars *vars) {
   int i;
-  double log_zn;
-  double smooth;
+  // double log_zn;
+  // double smooth;
   double zr;
   double zi;
   double zr_temp;
