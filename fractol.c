@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/07 17:30:23 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/07 17:30:51 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -59,7 +59,7 @@ static void print_help(void) {
       "                          'M' : Mandelbrot\n                       "
       "   'J' : Julia\n                          'B' : "
       "Burning Ship\n\n");
-  ft_printf("                            .--------------.\n                --------"
+  ft_printf("                            .-------------.\n                --------"
             "----|  "
             " Options   |------------\n                            '-------------'\n\n");
 
