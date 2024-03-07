@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/07 17:30:51 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/07 17:33:19 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -47,22 +47,27 @@ static void print_help(void) {
       "/\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\ \n ( o.o "
       ")( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )\n  > ^ "
       "<  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ < \n\n");
-  ft_printf("                            .-----------.\n                --------"
-            "----|  "
-            " Usage   |------------\n                            '-----------'\n\n");
+  ft_printf(
+      "                            .-----------.\n                --------"
+      "----|  "
+      " Usage   |------------\n                            '-----------'\n\n");
 
-    ft_printf("                      ./fractol <set> <options>\n\n");
-  ft_printf("                              .--------.\n                  -------"
-            "-----|  "
-            "Sets  |------------\n                              '--------'\n\n");
+  ft_printf("                      ./fractol <set> <options>\n\n");
+  ft_printf(
+      "                              .--------.\n                  -------"
+      "-----|  "
+      "Sets  |------------\n                              '--------'\n\n");
   ft_printf(
       "                          'M' : Mandelbrot\n                       "
       "   'J' : Julia\n                          'B' : "
       "Burning Ship\n\n");
-  ft_printf("                            .-------------.\n                --------"
-            "----|  "
-            " Options   |------------\n                            '-------------'\n\n");
-
+  ft_printf(
+      "                            .-------------.\n                --------"
+      "----|  "
+      " Options   |------------\n                            "
+      "'-------------'\n\n");
+  ft_printf("For Julia set you can specify the complexe value ranging from 0 "
+            "to 1 + i\n\n");
 }
 
 static void parse_input(t_vars *vars, int argc, char **argv) {
