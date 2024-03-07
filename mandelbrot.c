@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:14:42 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/07 10:09:16 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/07 10:11:12 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -22,9 +22,9 @@ void build_palette(t_vars *vars) {
 
   i = 0;
   while (i < PASS) {
-    vars->gradient[i].transparency = (9 * (int)i) % 255;
+    vars->gradient[i].transparency = (6 * (int)i) % 255;
     vars->gradient[i].red = (2 * (int)i) % 255;
-    vars->gradient[i].green = (2 * (int)i) % 255;
+    vars->gradient[i].green = (1 * (int)i) % 255;
     vars->gradient[i].blue = (2 * (int)i) % 255;
     ++i;
   }
@@ -114,7 +114,7 @@ double calc_mandelbrot(t_vars *vars) {
     zr_temp = zr * zr - zi * zi + vars->x;
     zi = 2 * zr * zi + vars->y;
     zr = zr_temp;
-    if (zr * zr + zi * zi > 16)
+    if (zr * zr + zi * zi > 4)
       break;
     ++i;
   }
