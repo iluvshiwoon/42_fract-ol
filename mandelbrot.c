@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:14:42 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/07 10:08:25 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/07 10:09:16 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -114,7 +114,7 @@ double calc_mandelbrot(t_vars *vars) {
     zr_temp = zr * zr - zi * zi + vars->x;
     zi = 2 * zr * zi + vars->y;
     zr = zr_temp;
-    if (zr * zr + zi * zi > 4)
+    if (zr * zr + zi * zi > 16)
       break;
     ++i;
   }
