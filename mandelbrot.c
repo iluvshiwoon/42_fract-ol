@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:14:42 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/07 12:07:38 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/07 12:17:34 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -14,6 +14,8 @@
 static double calc_pixel_color_multiplier(t_vars *vars) {
   if (vars->type == 'M')
     return (calc_mandelbrot(vars));
+  else if (vars->type == 'B')
+    return (calc_burning_ship(vars));
   return 0;
 }
 
@@ -39,10 +41,6 @@ t_color *get_color(double i, t_color *gradient, t_color *color) {
     i_floor -= 2;
   else if (i_floor == PASS - 1)
     i_floor -= 1;
-  // else if (i_floor == PASS - 2)
-  //   i_floor -= 1;
-  // else if (i_floor < 0)
-  //   i_floor = 0;
   i_scaled = (double)i / PASS;
   color->transparency = gradient[i_floor].transparency +
                         i_scaled * (gradient[i_floor + 1].transparency -
@@ -100,8 +98,6 @@ void render(t_vars *vars) {
 
 double calc_mandelbrot(t_vars *vars) {
   int i;
-  // double log_zn;
-  // double smooth;
   double zr;
   double zi;
   double zr_temp;
@@ -117,9 +113,32 @@ double calc_mandelbrot(t_vars *vars) {
       break;
     ++i;
   }
-  // log_zn = log(zr * zr + zi * zi) / 2;
-  // smooth = log(log_zn / log(2)) / log(2);
-  // smooth = i + 1 - smooth;
-  // return smooth;
+  return i;
+}
+
+double abs_double(double a)
+{
+    if (a < 0)
+        return (-a);
+    return (a);
+}
+
+double calc_burning_ship(t_vars *vars) {
+  int i;
+  double zr;
+  double zi;
+  double zr_temp;
+
+  i = 0;
+  zr = 0.0;
+  zi = 0.0;
+  while (i < PASS) {
+    zr_temp = abs_double(zr * zr - zi * zi) + vars->x;
+    zi = 2 * abs_double(zr) * abs_double(zi) + vars->y;
+    zr = zr_temp;
+    if (zr * zr + zi * zi > 4)
+      break;
+    ++i;
+  }
   return i;
 }

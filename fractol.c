@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/06 00:25:45 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/07 12:18:02 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -25,7 +25,7 @@ int main(void) {
   vars->offset_x = 0;
   vars->offset_y = 0;
   vars->zoom = 2;
-  vars->type = 'M';
+  vars->type = 'B';
   vars->mouse_x = 0;
   vars->mouse_y = 0;
   // vars->gradient.color1.red = 14;
