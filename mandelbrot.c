@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:14:42 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/07 12:06:43 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/07 12:07:38 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -35,10 +35,10 @@ t_color *get_color(double i, t_color *gradient, t_color *color) {
   int i_floor;
 
   i_floor = floor(i);
-  // if (i_floor == PASS)
-  //   i_floor -= 2;
-  // else if (i_floor == PASS - 1)
-  //   i_floor -= 1;
+  if (i_floor == PASS)
+    i_floor -= 2;
+  else if (i_floor == PASS - 1)
+    i_floor -= 1;
   // else if (i_floor == PASS - 2)
   //   i_floor -= 1;
   // else if (i_floor < 0)
