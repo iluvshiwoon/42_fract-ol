@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:14:42 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/07 10:22:34 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/07 11:49:33 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -60,10 +60,20 @@ t_color *get_color(double i, t_color *gradient, t_color *color) {
   return color;
 }
 
-void render(t_vars *vars) {
+void put_pixel(t_vars *vars, t_data *img) {
   t_color color;
-  t_data img;
   double i;
+
+  i = calc_pixel_color_multiplier(vars);
+  get_color(i, vars->gradient, &color);
+  my_mlx_put_pixel(img, vars->p_x, vars->p_y,
+                   create_trgb(color.transparency * (i < PASS),
+                               color.red * (i < PASS), color.green * (i < PASS),
+                               color.blue * (i < PASS)));
+}
+
+void render(t_vars *vars) {
+  t_data img;
   double increment;
   double y_origin;
 
@@ -79,12 +89,7 @@ void render(t_vars *vars) {
     vars->p_y = 0;
     vars->y = y_origin;
     while (vars->p_y < VH) {
-      i = calc_pixel_color_multiplier(vars);
-      get_color(i, vars->gradient, &color);
-      my_mlx_put_pixel(
-          &img, vars->p_x, vars->p_y,
-          create_trgb(color.transparency * (i < PASS), color.red * (i < PASS),
-                      color.green * (i < PASS), color.blue * (i < PASS)));
+      put_pixel(vars, &img);
       ++(vars->p_y);
       vars->y += increment;
     }
