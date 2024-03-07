@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:14:42 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/07 12:17:34 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/07 12:21:10 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -133,8 +133,8 @@ double calc_burning_ship(t_vars *vars) {
   zr = 0.0;
   zi = 0.0;
   while (i < PASS) {
-    zr_temp = abs_double(zr * zr - zi * zi) + vars->x;
-    zi = 2 * abs_double(zr) * abs_double(zi) + vars->y;
+    zr_temp = abs_double(zr * zr - zi * zi + vars->x);
+    zi = 2 * abs_double(zr * zi + vars->y);
     zr = zr_temp;
     if (zr * zr + zi * zi > 4)
       break;
