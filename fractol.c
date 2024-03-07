@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/07 16:46:03 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/07 16:47:20 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -43,10 +43,11 @@ static void print_title(void) {
       "/\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\ \n( o.o "
       ")( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )\n > ^ "
       "<  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ < \n\n");
-  ft_printf("                           .--------.\n                           |  "
-            "Sets  |\n                           '--------'\n\n");
-  ft_printf("                        'M' : Mandelbrot\n                       "
-            " 'J' : Julia\n                        'B' : "
+  ft_printf(
+      "                            .--------.\n                            |  "
+      "Sets  |\n                            '--------'\n\n");
+  ft_printf("                         'M' : Mandelbrot\n                       "
+            " 'J' : Julia\n                         'B' : "
             "Burning Ship\n");
 }
 
