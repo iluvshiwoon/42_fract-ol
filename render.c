@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:16:12 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/07 15:18:33 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/07 15:32:28 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int calc_pixel_color_multiplier(t_vars *vars) {
     return (calc_mandelbrot(vars));
   else if (vars->type == 'B')
     return (calc_burning_ship(vars));
+  else if (vars->type == 'J')
+    return (calc_julia(vars));
   return 0;
 }
 

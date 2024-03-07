@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:03:53 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/07 15:21:11 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/07 15:31:40 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ typedef struct s_vars {
   int mouse_y;
 
   t_color *gradient;
+    double cr;
+    double ci;
 } t_vars;
 
 // Color
@@ -76,6 +78,7 @@ void render(t_vars *vars);
 int calc_mandelbrot(t_vars *vars);
 int calc_burning_ship(t_vars *vars);
 double abs_double(double a);
+int calc_julia(t_vars *vars);
 
 // Events
 int key_events(int keycode, t_vars *vars);
