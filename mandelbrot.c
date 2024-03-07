@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:14:42 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/07 09:57:02 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/07 09:58:41 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -82,13 +82,12 @@ void average_color(t_color *color, t_color *averaged, int samples) {
 }
 
 void render(t_vars *vars) {
-  t_color * color;
+  t_color *color;
   t_color averaged;
   t_data img;
   double i;
   int j;
 
-  j = 0;
   color = malloc(sizeof(*color) * 16);
   vars->p_x = 0;
   vars->x = scale('w', vars->offset_x, vars);
@@ -100,9 +99,10 @@ void render(t_vars *vars) {
     vars->p_y = 0;
     vars->y = scale('h', vars->offset_y, vars);
     while (vars->p_y < VH) {
+      j = 0;
       while (j < 16) {
-        vars->x += (scale('w', 1., vars) - scale('w', 0., vars)) / 16;
-        vars->y += (scale('w', 1., vars) - scale('w', 0., vars)) / 16;
+        vars->x += (scale('w', 1., vars) - scale('w', 0., vars)) / 16.;
+        vars->y += (scale('w', 1., vars) - scale('w', 0., vars)) / 16.;
         i = calc_pixel_color_multiplier(vars);
         get_color(i, vars->gradient, &(color[j]));
         ++j;
