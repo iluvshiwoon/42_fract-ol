@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:14:42 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/07 10:17:00 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/07 10:22:34 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -64,16 +64,20 @@ void render(t_vars *vars) {
   t_color color;
   t_data img;
   double i;
+  double increment;
+  double y_origin;
 
   vars->p_x = 0;
   vars->x = scale('w', vars->offset_x, vars);
+  y_origin = scale('h', vars->offset_y, vars);
 
   img.img = mlx_new_image(vars->mlx, VW, VH);
   img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
                                &img.endian);
+  increment = scale('w', 1., vars) - scale('w', 0., vars);
   while (vars->p_x < VW) {
     vars->p_y = 0;
-    vars->y = scale('h', vars->offset_y, vars);
+    vars->y = y_origin;
     while (vars->p_y < VH) {
       i = calc_pixel_color_multiplier(vars);
       get_color(i, vars->gradient, &color);
@@ -81,13 +85,11 @@ void render(t_vars *vars) {
           &img, vars->p_x, vars->p_y,
           create_trgb(color.transparency * (i < PASS), color.red * (i < PASS),
                       color.green * (i < PASS), color.blue * (i < PASS)));
-      // create_trgb((5 * i + 30) % 255, (10 * i + 30) % 255,
-      //             (20 * i + 30) % 255, (30 * i + 30) % 255));
       ++(vars->p_y);
-      vars->y += scale('w', 1., vars) - scale('w', 0., vars);
+      vars->y += increment;
     }
     ++(vars->p_x);
-    vars->x += scale('w', 1., vars) - scale('w', 0., vars);
+    vars->x += increment;
   }
   mlx_put_image_to_window(vars->mlx, vars->win, img.img, 0, 0);
   mlx_destroy_image(vars->mlx, img.img);
