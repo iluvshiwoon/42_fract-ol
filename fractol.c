@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/07 17:12:32 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/07 17:14:15 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -49,11 +49,11 @@ static void print_title(void) {
       "<  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ < \n\n");
   ft_printf("                            .-----------.\n                        "
             "    |  "
-            " Usage   |\n                            '-----------'\n\n");
+            " Usage   |\n                           '-----------'\n\n");
 
-  ft_printf("                              .--------.\n                          "
+  ft_printf("                           .--------.\n                      "
             "    |  "
-            "Sets  |\n                              '--------'\n\n");
+            "Sets  |\n                          '--------'\n\n");
   ft_printf(
       "                          'M' : Mandelbrot\n                       "
       "   'J' : Julia\n                          'B' : "
