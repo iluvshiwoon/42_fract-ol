@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/07 16:10:22 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/07 16:15:16 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -27,6 +27,7 @@ static void init(t_vars *vars) {
   vars->mouse_x = 0;
   vars->mouse_y = 0;
 }
+
 static void print_title(void) {
   ft_printf(
       "________/"
@@ -54,7 +55,9 @@ static void print_title(void) {
       "\\\\\\\\\\\\\\\\_____\\//\\\\\\\\\\_____________\\///\\\\\\\\\\/_____/"
       "\\\\\\\\\\\\\\\\\\_ \n        "
       "____\\///________\\///____________\\////////\\//______\\////////"
-      "_______\\/////________________\\/////______\\/////////__");
+      "_______\\/////________________\\/////______\\/////////__\n");
+  ft_printf("        'M' : Mandelbrot\n        'J' : Julia\n        'B' : "
+            "Burning Ship\n");
 }
 
 static void parse_input(t_vars *vars, int argc, char **argv) {
@@ -68,9 +71,6 @@ static void parse_input(t_vars *vars, int argc, char **argv) {
       vars->type = 'J';
   } else {
     print_title();
-    ft_printf("Usage: ./fractol <set> <options>\nSets: 'M' Mandelbrot\n'B' "
-              "Burning Ship\n'J' Julia\nFor Julia's sets you can specify a "
-              "complex in the range (0, 1 + i)\n");
     return (free(vars), exit(0));
   }
 }
