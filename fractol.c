@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/07 17:39:57 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/07 17:40:36 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -66,7 +66,7 @@ static void print_help(void) {
       "----|  "
       " Options   |------------\n                            "
       "'-------------'\n\n");
-  ft_printf("       For Julia set complexe value ranging from -1 - i "
+  ft_printf("        For Julia set complexe value ranging from -1 - i "
             "to 1 + i\n\n");
   ft_printf("                      Ex : ./fractol J -0.8 0.156\n\n");
 }
