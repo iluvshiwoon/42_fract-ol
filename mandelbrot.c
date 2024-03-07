@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:14:42 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/07 10:13:09 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/07 10:13:47 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -23,8 +23,8 @@ void build_palette(t_vars *vars) {
   i = 0;
   while (i < PASS) {
     vars->gradient[i].transparency = (6 * (int)i) % 255;
-    vars->gradient[i].red = (3 * (int)i) % 255;
-    vars->gradient[i].green = (6 * (int)i) % 255;
+    vars->gradient[i].red = (23 * (int)i) % 255;
+    vars->gradient[i].green = (11 * (int)i) % 255;
     vars->gradient[i].blue = (9 * (int)i) % 255;
     ++i;
   }
