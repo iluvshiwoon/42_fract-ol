@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:14:42 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/07 09:58:41 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/07 10:01:14 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -60,35 +60,11 @@ t_color *get_color(double i, t_color *gradient, t_color *color) {
   return color;
 }
 
-void average_color(t_color *color, t_color *averaged, int samples) {
-  int i;
-
-  i = 0;
-  averaged->transparency = 0;
-  averaged->red = 0;
-  averaged->blue = 0;
-  averaged->green = 0;
-  while (i < samples) {
-    averaged->transparency += color[i].transparency;
-    averaged->red += color[i].red;
-    averaged->blue += color[i].blue;
-    averaged->green += color[i].green;
-    ++i;
-  }
-  averaged->transparency /= samples;
-  averaged->red /= samples;
-  averaged->blue /= samples;
-  averaged->green /= samples;
-}
-
 void render(t_vars *vars) {
-  t_color *color;
-  t_color averaged;
+  t_color color;
   t_data img;
   double i;
-  int j;
 
-  color = malloc(sizeof(*color) * 16);
   vars->p_x = 0;
   vars->x = scale('w', vars->offset_x, vars);
 
@@ -99,22 +75,12 @@ void render(t_vars *vars) {
     vars->p_y = 0;
     vars->y = scale('h', vars->offset_y, vars);
     while (vars->p_y < VH) {
-      j = 0;
-      while (j < 16) {
-        vars->x += (scale('w', 1., vars) - scale('w', 0., vars)) / 16.;
-        vars->y += (scale('w', 1., vars) - scale('w', 0., vars)) / 16.;
-        i = calc_pixel_color_multiplier(vars);
-        get_color(i, vars->gradient, &(color[j]));
-        ++j;
-      }
-      vars->x -= scale('w', 1., vars) - scale('w', 0., vars);
-      vars->y -= scale('w', 1., vars) - scale('w', 0., vars);
-      average_color(color, &averaged, 16);
-      my_mlx_put_pixel(&img, vars->p_x, vars->p_y,
-                       create_trgb(averaged.transparency * (i < PASS),
-                                   averaged.red * (i < PASS),
-                                   averaged.green * (i < PASS),
-                                   averaged.blue * (i < PASS)));
+      i = calc_pixel_color_multiplier(vars);
+      get_color(i, vars->gradient, &color);
+      my_mlx_put_pixel(
+          &img, vars->p_x, vars->p_y,
+          create_trgb(color.transparency * (i < PASS), color.red * (i < PASS),
+                      color.green * (i < PASS), color.blue * (i < PASS)));
       // create_trgb((5 * i + 30) % 255, (10 * i + 30) % 255,
       //             (20 * i + 30) % 255, (30 * i + 30) % 255));
       ++(vars->p_y);
@@ -123,7 +89,6 @@ void render(t_vars *vars) {
     ++(vars->p_x);
     vars->x += scale('w', 1., vars) - scale('w', 0., vars);
   }
-  free(color);
   mlx_put_image_to_window(vars->mlx, vars->win, img.img, 0, 0);
   mlx_destroy_image(vars->mlx, img.img);
 }
