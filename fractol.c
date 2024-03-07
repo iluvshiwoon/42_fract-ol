@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/07 17:26:56 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/07 17:30:23 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -28,7 +28,7 @@ static void init(t_vars *vars) {
   vars->mouse_y = 0;
 }
 
-static void print_title(void) {
+static void print_help(void) {
   ft_printf(
       "  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  "
       "/\\_/\\ "
@@ -58,7 +58,11 @@ static void print_title(void) {
   ft_printf(
       "                          'M' : Mandelbrot\n                       "
       "   'J' : Julia\n                          'B' : "
-      "Burning Ship\n");
+      "Burning Ship\n\n");
+  ft_printf("                            .--------------.\n                --------"
+            "----|  "
+            " Options   |------------\n                            '-------------'\n\n");
+
 }
 
 static void parse_input(t_vars *vars, int argc, char **argv) {
@@ -71,7 +75,7 @@ static void parse_input(t_vars *vars, int argc, char **argv) {
     else if (argv[1][0] == 'J')
       vars->type = 'J';
   } else {
-    print_title();
+    print_help();
     return (free(vars), exit(0));
   }
 }
