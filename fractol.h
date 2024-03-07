@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:03:53 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/07 12:16:04 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/07 15:21:11 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,17 @@ typedef struct s_vars {
   t_color *gradient;
 } t_vars;
 
+// Color
+void build_palette(t_vars *vars);
+t_color *get_color(int i, t_color *gradient, t_color *color);
+
 // Render
 void render(t_vars *vars);
-double calc_mandelbrot(t_vars *vars);
-double calc_burning_ship(t_vars *vars);
+
+// Sets
+int calc_mandelbrot(t_vars *vars);
+int calc_burning_ship(t_vars *vars);
+double abs_double(double a);
 
 // Events
 int key_events(int keycode, t_vars *vars);
