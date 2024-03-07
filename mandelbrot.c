@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:14:42 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/07 09:56:04 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/07 09:57:02 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -104,7 +104,7 @@ void render(t_vars *vars) {
         vars->x += (scale('w', 1., vars) - scale('w', 0., vars)) / 16;
         vars->y += (scale('w', 1., vars) - scale('w', 0., vars)) / 16;
         i = calc_pixel_color_multiplier(vars);
-        get_color(i, vars->gradient, &color[j]);
+        get_color(i, vars->gradient, &(color[j]));
         ++j;
       }
       vars->x -= scale('w', 1., vars) - scale('w', 0., vars);
