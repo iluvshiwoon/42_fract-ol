@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/09 17:04:51 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/09 18:00:15 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -76,24 +76,34 @@ static void help(t_vars *vars) {
   free(vars);
   exit(0);
 }
+static void parse_julia(t_vars *vars, int argc, char **argv) {
+  double rvalue;
+  int status;
+  char *cr;
+  char *ci;
 
-static int parse_julia(t_vars * vars, char ** argv)
-{
-    if (!ft_isdigit(argv[2][0]))
-        return 0;
-    return 1;
+  cr = argv[2];
+  rvalue = atodouble(cr, &status);
+  if (status && rvalue <= 1. && rvalue >= -1.)
+    vars->cr = rvalue;
+  else
+    help(vars);
+  if (argc == 3) {
+    ci = argv[3];
+    rvalue = atodouble(ci, &status);
+    if (status && rvalue <= 1. && rvalue >= -1.)
+      vars->ci = rvalue;
+    else
+      help(vars);
+  } else
+    vars->ci = 0;
 }
 
 static void handle_julia(t_vars *vars, int argc, char **argv) {
-    int status;
-    if (argc > 2 && argc < 4)
-    {
-        status = parse_julia(vars, argv);
-        if (!status)
-            help(vars);
-    }
-    else 
-        help(vars);
+  if (argc > 1 && argc < 4)
+    parse_julia(vars, argc, argv);
+  else
+    help(vars);
 }
 
 static void parse_input(t_vars *vars, int argc, char **argv) {
@@ -118,6 +128,7 @@ int main(int argc, char **argv) {
   vars = malloc(sizeof(*vars));
   init(vars);
   parse_input(vars, argc, argv);
+  ft_printf("%f\n%f\n", vars->cr, vars->ci);
   vars->gradient = malloc(sizeof(*(vars->gradient)) * PASS);
   build_palette(vars);
 

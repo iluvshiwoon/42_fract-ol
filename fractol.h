@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:03:53 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/07 15:31:40 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/09 17:52:44 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void move(t_vars *vars);
 int close_win(t_vars *vars);
 double scale(char axe, double x, t_vars *vars);
 void build_palette(t_vars *vars);
+double atodouble(char *string, int * status);
 
 // Mlx Utils
 int create_trgb(int t, int r, int g, int b);
