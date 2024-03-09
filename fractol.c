@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/09 18:17:57 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/09 18:20:47 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -93,7 +93,7 @@ static void parse_julia(t_vars *vars, int argc, char **argv) {
     vars->cr = rvalue;
   else
     help(vars);
-  if (argc == 3) {
+  if (argc == 4) {
     ci = argv[3];
     rvalue = atodouble(ci, &status);
     printf("%f\n", rvalue);
