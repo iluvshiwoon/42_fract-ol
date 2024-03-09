@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/07 17:40:36 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/09 16:49:16 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -82,7 +82,8 @@ static void parse_input(t_vars *vars, int argc, char **argv) {
       vars->type = 'J';
   } else {
     print_help();
-    return (free(vars), exit(0));
+    free(vars);
+    exit(0);
   }
 }
 
