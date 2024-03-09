@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:19:58 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/09 18:16:07 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/09 18:18:51 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -62,7 +62,7 @@ double atodouble(char *string, int *status) {
           floating_point + (string[i[0]++] - '0') / pow(10.,i[1]++);
     }
   }
-  if (string[i[0]] != '\0')
+  if (string[i[0]])
     *status = ERROR;
   return (sign * (r_value + floating_point));
 }
