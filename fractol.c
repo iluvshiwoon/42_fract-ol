@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/09 16:49:16 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/09 16:52:58 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -71,6 +71,12 @@ static void print_help(void) {
   ft_printf("                      Ex : ./fractol J -0.8 0.156\n\n");
 }
 
+static void help(t_vars *vars) {
+  print_help();
+  free(vars);
+  exit(0);
+}
+
 static void parse_input(t_vars *vars, int argc, char **argv) {
   int status;
   if (argc > 1) {
@@ -80,10 +86,10 @@ static void parse_input(t_vars *vars, int argc, char **argv) {
       vars->type = 'B';
     else if (argv[1][0] == 'J')
       vars->type = 'J';
+    else
+      help(vars);
   } else {
-    print_help();
-    free(vars);
-    exit(0);
+    help(vars);
   }
 }
 
