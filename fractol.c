@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/09 18:29:51 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/09 21:42:58 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -24,6 +24,10 @@ static void init(t_vars *vars) {
   vars->zoom = 2;
   vars->mouse_x = 0;
   vars->mouse_y = 0;
+  vars->color_multiplier[0] = 6;
+  vars->color_multiplier[1] = 1;
+  vars->color_multiplier[2] = 11;
+  vars->color_multiplier[3] = 9;
 }
 
 static void print_help(void) {

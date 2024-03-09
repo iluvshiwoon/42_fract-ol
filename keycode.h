@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 18:16:03 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/02 14:36:24 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/09 21:37:08 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@
 # define MOUSE_BTN 1
 # define MOUSE_BTN_2 3
 # define KEY_K 107
+# define KEY_J 106
 
 #endif
