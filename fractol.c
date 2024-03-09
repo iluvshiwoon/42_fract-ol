@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/09 18:02:30 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/09 18:04:58 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -84,6 +84,7 @@ static void parse_julia(t_vars *vars, int argc, char **argv) {
 
   cr = argv[2];
   rvalue = atodouble(cr, &status);
+  ft_printf("%f\n", rvalue);
   if (status && rvalue <= 1. && rvalue >= -1.)
     vars->cr = rvalue;
   else
@@ -91,6 +92,7 @@ static void parse_julia(t_vars *vars, int argc, char **argv) {
   if (argc == 3) {
     ci = argv[3];
     rvalue = atodouble(ci, &status);
+    ft_printf("%f\n", rvalue);
     if (status && rvalue <= 1. && rvalue >= -1.)
       vars->ci = rvalue;
     else
@@ -128,7 +130,6 @@ int main(int argc, char **argv) {
   vars = malloc(sizeof(*vars));
   init(vars);
   parse_input(vars, argc, argv);
-  ft_printf("%f\n%f\n", vars->cr, vars->ci);
   vars->gradient = malloc(sizeof(*(vars->gradient)) * PASS);
   build_palette(vars);
 
