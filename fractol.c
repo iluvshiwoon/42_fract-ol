@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/09 16:52:58 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/09 17:00:54 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -77,6 +77,23 @@ static void help(t_vars *vars) {
   exit(0);
 }
 
+static int parse_julia(t_vars * vars, char ** argv)
+{
+    if (!ft_isdigit(argv[2][0]))
+        return 0;
+    return 1;
+}
+
+static void handle_julia(t_vars *vars, int argc, char **argv) {
+    int status;
+    if (argc > 2 && argc < 4)
+    {
+        parse_julia(vars, argv);
+    }
+    else 
+        help(vars);
+}
+
 static void parse_input(t_vars *vars, int argc, char **argv) {
   int status;
   if (argc > 1) {
@@ -85,7 +102,7 @@ static void parse_input(t_vars *vars, int argc, char **argv) {
     else if (argv[1][0] == 'B')
       vars->type = 'B';
     else if (argv[1][0] == 'J')
-      vars->type = 'J';
+      handle_julia(vars, argc, argv);
     else
       help(vars);
   } else {
