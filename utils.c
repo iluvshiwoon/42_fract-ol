@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:19:58 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/09 18:09:46 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/09 18:12:34 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -60,8 +60,9 @@ double atodouble(char *string, int *status) {
     ++(i[0]);
     while (ft_isdigit(string[i[0]]) && string[i[0]]) {
             printf("%f\n",floating_point);
+            printf("%f\n", (10. * i[1]));
       floating_point =
-          floating_point + (double)(string[i[0]++] - '0') / (10 * i[1]++);
+          floating_point + (string[i[0]++] - '0') / (10. * i[1]++);
     }
   }
   if (string[i[0]])
