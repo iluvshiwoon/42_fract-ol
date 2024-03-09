@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:19:58 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/09 18:13:59 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/09 18:16:07 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -40,7 +40,6 @@ static double get_sign(char c, size_t *i) {
     ++(*i);
   return (sign);
 }
-#include <stdio.h>
 double atodouble(char *string, int *status) {
   size_t i[2];
   double sign;
@@ -59,13 +58,11 @@ double atodouble(char *string, int *status) {
   if (i[0] && string[i[0]] && string[i[0]] == '.') {
     ++(i[0]);
     while (ft_isdigit(string[i[0]]) && string[i[0]]) {
-            printf("%f\n",floating_point);
-            printf("%f\n", (10. * i[1]));
       floating_point =
           floating_point + (string[i[0]++] - '0') / pow(10.,i[1]++);
     }
   }
-  if (string[i[0]])
+  if (string[i[0]] != '\0')
     *status = ERROR;
   return (sign * (r_value + floating_point));
 }
