@@ -6,23 +6,25 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:03 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/09 21:48:59 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/03/09 21:50:43 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
 
 void shift_color(t_vars *vars, char direction) {
   if (direction == 'K') {
-    vars->color_multiplier[0]+=(vars->color_multiplier[2] * 3) / 2;
+    vars->color_multiplier[0] += (vars->color_multiplier[2] * 3) / 2;
     vars->color_multiplier[1]++;
-    vars->color_multiplier[2]+=(vars->color_multiplier[0] * 5) / 3;
+    vars->color_multiplier[2] += (vars->color_multiplier[0] * 5) / 3;
     vars->color_multiplier[3]++;
   } else if (direction == 'J') {
-    vars->color_multiplier[0]-=(vars->color_multiplier[2] * 3) / 2;
+    vars->color_multiplier[0] -= (vars->color_multiplier[2] * 3) / 2;
     vars->color_multiplier[1]--;
-    vars->color_multiplier[2]-=(vars->color_multiplier[0] * 5) / 3;
+    vars->color_multiplier[2] -= (vars->color_multiplier[0] * 5) / 3;
     vars->color_multiplier[3]--;
   }
+  build_palette(vars);
+  render(vars);
 }
 
 void build_palette(t_vars *vars) {
