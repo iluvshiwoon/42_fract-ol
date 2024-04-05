@@ -1,5 +1,6 @@
 # replace C_FILES with hard coded path i.e. make a bash script
-C_FILES = $(wildcard ./*.c)
+C_FILES = burning_ship.c color.c fractol.c mandelbrot.c mlx_utils.c utils.c \
+camera.c events.c julia.c menu.c render.c
 O_FILES = $(C_FILES:%.c=build/%.o)
 C_FLAGS = -Wall -Werror -Wextra
 NAME = fractol
