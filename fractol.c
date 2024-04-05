@@ -6,11 +6,11 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/04/05 11:50:03 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/04/05 13:04:14 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "fractol.h"
 #include "X11/X.h"
+#include "fractol.h"
 
 static void	init(t_vars *vars)
 {
@@ -31,122 +31,77 @@ static void	init(t_vars *vars)
 	vars->color_multiplier[3] = 9;
 }
 
-static void	print_help(void)
+static void	parse_julia(t_vars *vars, int argc, char **argv)
 {
-  ft_printf(
-      "  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  "
-      "/\\_/\\ "
-      " /\\_/\\  /\\_/\\ \n ( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )( "
-      "o.o )( o.o )( o.o )\n  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  "
-      "> ^ <  > ^ <  > ^ < \n  /\\_/\\                                         "
-      " "
-      "                /\\_/\\ \n ( o.o )        __                     _      "
-      " "
-      "    _   _        ( o.o ) \n  > ^ <        / _|  _ _   __ _   __  | |_   "
-      "___  ( ) | |        > ^ < \n  /\\_/\\       |  _| | '_| / _` | / _| |  "
-      "_| / _ \\ |/  | |        /\\_/\\ \n ( o.o )      |_|   |_|   \\__,_| "
-      "\\__|  \\__| \\___/     |_|       ( o.o )\n  > ^ <                      "
-      " "
-      "                                   > ^ < \n  /\\_/\\  /\\_/\\  /\\_/\\  "
-      "/\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\ \n ( o.o "
-      ")( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )\n  > ^ "
-      "<  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ < \n\n");
-  ft_printf(
-      "                            .-----------.\n                --------"
-      "----|  "
-      " Usage   |------------\n                            '-----------'\n\n");
+	double	rvalue;
+	int		status;
+	char	*cr;
+	char	*ci;
 
-  ft_printf("                      ./fractol <set> <options>\n\n");
-  ft_printf(
-      "                              .--------.\n                  -------"
-      "-----|  "
-      "Sets  |------------\n                              '--------'\n\n");
-  ft_printf(
-      "                          'M' : Mandelbrot\n                       "
-      "   'J' : Julia\n                          'B' : "
-      "Burning Ship\n\n");
-  ft_printf(
-      "                            .-------------.\n                --------"
-      "----|  "
-      " Options   |------------\n                            "
-      "'-------------'\n\n");
-  ft_printf("        For Julia set complexe value ranging from -1 - i "
-            "to 1 + i\n\n");
-  ft_printf("                      Ex : ./fractol J -0.8 0.156\n\n");
-  ft_printf("                   Use 'j' and 'k' to change colors\n\n");
+	cr = argv[2];
+	status = SUCCESS;
+	rvalue = atodouble(cr, &status);
+	if (status && rvalue <= 1. && rvalue >= -1.)
+		vars->cr = rvalue;
+	else
+		help(vars);
+	if (argc == 4)
+	{
+		ci = argv[3];
+		rvalue = atodouble(ci, &status);
+		if (status && rvalue <= 1. && rvalue >= -1.)
+			vars->ci = rvalue;
+		else
+			help(vars);
+	}
+	else
+		vars->ci = 0;
+	vars->type = 'J';
 }
 
-static void help(t_vars *vars) {
-  print_help();
-  free(vars);
-  exit(0);
+static void	handle_julia(t_vars *vars, int argc, char **argv)
+{
+	if (argc > 2 && argc < 5)
+		parse_julia(vars, argc, argv);
+	else
+		help(vars);
 }
 
-#include <stdio.h>
-static void parse_julia(t_vars *vars, int argc, char **argv) {
-  double rvalue;
-  int status;
-  char *cr;
-  char *ci;
-
-  cr = argv[2];
-  status = SUCCESS;
-  rvalue = atodouble(cr, &status);
-  if (status && rvalue <= 1. && rvalue >= -1.)
-    vars->cr = rvalue;
-  else
-    help(vars);
-  if (argc == 4) {
-    ci = argv[3];
-    rvalue = atodouble(ci, &status);
-    if (status && rvalue <= 1. && rvalue >= -1.)
-      vars->ci = rvalue;
-    else
-      help(vars);
-  } else
-    vars->ci = 0;
-  vars->type = 'J';
+static void	parse_input(t_vars *vars, int argc, char **argv)
+{
+	if (argc == 2)
+	{
+		if (argv[1][0] == 'M')
+			vars->type = 'M';
+		else if (argv[1][0] == 'B')
+			vars->type = 'B';
+		else
+			help(vars);
+	}
+	else if (argc > 1 && argv[1][0] == 'J')
+		handle_julia(vars, argc, argv);
+	else
+	{
+		help(vars);
+	}
 }
 
-static void handle_julia(t_vars *vars, int argc, char **argv) {
-  if (argc > 2 && argc < 5)
-    parse_julia(vars, argc, argv);
-  else
-    help(vars);
-}
+int	main(int argc, char **argv)
+{
+	t_vars	*vars;
 
-static void parse_input(t_vars *vars, int argc, char **argv) {
-  if (argc == 2) {
-    if (argv[1][0] == 'M')
-      vars->type = 'M';
-    else if (argv[1][0] == 'B')
-      vars->type = 'B';
-    else
-      help(vars);
-
-  } else if (argc > 1 && argv[1][0] == 'J')
-    handle_julia(vars, argc, argv);
-  else {
-    help(vars);
-  }
-}
-
-int main(int argc, char **argv) {
-  t_vars *vars;
-
-  vars = malloc(sizeof(*vars));
-  init(vars);
-  parse_input(vars, argc, argv);
-  vars->gradient = malloc(sizeof(*(vars->gradient)) * PASS);
-  build_palette(vars);
-
-  vars->mlx = mlx_init();
-  mlx_do_key_autorepeaton(vars->mlx);
-  vars->win = mlx_new_window(vars->mlx, vars->view_width, vars->view_height,
-                             "Fract-ol");
-  render(vars);
-  mlx_hook(vars->win, KeyPress, KeyPressMask, &key_events, vars);
-  mlx_mouse_hook(vars->win, &mouse_events, vars);
-  mlx_hook(vars->win, DestroyNotify, 0, &close_win, vars);
-  mlx_loop(vars->mlx);
+	vars = malloc(sizeof(*vars));
+	init(vars);
+	parse_input(vars, argc, argv);
+	vars->gradient = malloc(sizeof(*(vars->gradient)) * PASS);
+	build_palette(vars);
+	vars->mlx = mlx_init();
+	mlx_do_key_autorepeaton(vars->mlx);
+	vars->win = mlx_new_window(vars->mlx, vars->view_width, vars->view_height,
+			"Fract-ol");
+	render(vars);
+	mlx_hook(vars->win, KeyPress, KeyPressMask, &key_events, vars);
+	mlx_mouse_hook(vars->win, &mouse_events, vars);
+	mlx_hook(vars->win, DestroyNotify, 0, &close_win, vars);
+	mlx_loop(vars->mlx);
 }

@@ -17,7 +17,6 @@ $(NAME): $(C_FILES) | build
 
 build:
 	mkdir -p build
-	wget https://cdn.intra.42.fr/document/document/23835/minilibx-linux.tgz && tar -xvf minilibx-linux.tgz && rm minilibx-linux.tgz 
 	$(MAKE) -C 42_MyLibC
 	$(MAKE) -C minilibx-linux
 

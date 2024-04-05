@@ -6,12 +6,12 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 18:16:03 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/09 21:37:08 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/04/05 13:12:47 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KEYS_H
-# define KEYS_H
+#ifndef KEYCODE_H
+# define KEYCODE_H
 
 # define ON_DESTROY 17
 # define ON_KEYDOWN 2
