@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:03:53 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/09 21:45:06 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/04/05 11:11:19 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ t_color *get_color(int i, t_color *gradient, t_color *color);
 void shift_color(t_vars *vars, char direction);
 
 // Render
-void render(t_vars *vars);
+int render(t_vars *vars);
 
 // Sets
 int calc_mandelbrot(t_vars *vars);

@@ -6,31 +6,33 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/03/09 21:42:58 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/04/05 11:50:03 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
 #include "X11/X.h"
 
-static void init(t_vars *vars) {
-  vars->view_width = VW;
-  vars->view_height = VH;
-  vars->min_r = -4.0;
-  vars->max_r = 4.0;
-  vars->min_i = -2.23;
-  vars->max_i = 4.0;
-  vars->offset_x = 0;
-  vars->offset_y = 0;
-  vars->zoom = 2;
-  vars->mouse_x = 0;
-  vars->mouse_y = 0;
-  vars->color_multiplier[0] = 6;
-  vars->color_multiplier[1] = 1;
-  vars->color_multiplier[2] = 11;
-  vars->color_multiplier[3] = 9;
+static void	init(t_vars *vars)
+{
+	vars->view_width = VW;
+	vars->view_height = VH;
+	vars->min_r = -4.0;
+	vars->max_r = 4.0;
+	vars->min_i = -2.23;
+	vars->max_i = 4.0;
+	vars->offset_x = 0;
+	vars->offset_y = 0;
+	vars->zoom = 2;
+	vars->mouse_x = 0;
+	vars->mouse_y = 0;
+	vars->color_multiplier[0] = 6;
+	vars->color_multiplier[1] = 1;
+	vars->color_multiplier[2] = 11;
+	vars->color_multiplier[3] = 9;
 }
 
-static void print_help(void) {
+static void	print_help(void)
+{
   ft_printf(
       "  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  "
       "/\\_/\\ "
@@ -71,6 +73,7 @@ static void print_help(void) {
   ft_printf("        For Julia set complexe value ranging from -1 - i "
             "to 1 + i\n\n");
   ft_printf("                      Ex : ./fractol J -0.8 0.156\n\n");
+  ft_printf("                   Use 'j' and 'k' to change colors\n\n");
 }
 
 static void help(t_vars *vars) {
