@@ -6,7 +6,7 @@
 /*   By: kgriset <kgriset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:08:57 by kgriset           #+#    #+#             */
-/*   Updated: 2024/04/05 13:04:14 by kgriset          ###   ########.fr       */
+/*   Updated: 2024/04/05 13:39:46 by kgriset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "X11/X.h"
@@ -91,9 +91,13 @@ int	main(int argc, char **argv)
 	t_vars	*vars;
 
 	vars = malloc(sizeof(*vars));
+	if (!vars)
+		return (ERROR);
 	init(vars);
 	parse_input(vars, argc, argv);
 	vars->gradient = malloc(sizeof(*(vars->gradient)) * PASS);
+	if (!vars->gradient)
+		return (free(vars), ERROR);
 	build_palette(vars);
 	vars->mlx = mlx_init();
 	mlx_do_key_autorepeaton(vars->mlx);
